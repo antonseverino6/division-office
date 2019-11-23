@@ -1,12 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
-class UsersController extends Controller
+class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -35,7 +42,21 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'admin' => 'required',
+            'password' => ['required', 'string', 'min:8','confirmed'],
+            'password_confirmation' => 'required',
+        ]);
+
+        return User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'admin' => $request['admin'],
+            'registered_by' => auth('api')->user()->id,
+            'password' => Hash::make($request['password']),
+        ]);
     }
 
     /**
@@ -78,8 +99,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return ['message' => 'deleted successfully'];
     }
 }

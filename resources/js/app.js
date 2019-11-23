@@ -5,8 +5,65 @@
  */
 
 require('./bootstrap');
+// import $ from 'jquery';
+// window.$ = window.jQuery = $;
 
 window.Vue = require('vue');
+window.Fire = new Vue();
+
+import Swal from 'sweetalert2'
+
+window.Swal = Swal;
+
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    onOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  });
+
+window.Toast = Toast;  
+
+import VueProgressBar from 'vue-progressbar'
+
+Vue.use(VueProgressBar, {
+    color: 'rgb(143, 255, 199)',
+    failedColor: 'red',
+    height: '3px'
+    })
+    
+import { Form, HasError, AlertError } from 'vform'
+
+window.Form = Form;
+Vue.component(HasError.name, HasError)
+Vue.component(AlertError.name, AlertError)
+
+
+
+import Router from 'vue-router'
+
+Vue.use(Router);
+
+import User from './components/UserComponent.vue';
+import Dashboard from './components/DashboardComponent.vue';
+
+export const routes = [
+    { path: '/users', component: User, name: 'User' },
+    { path: '/dashboard', component: Dashboard, name: 'Dashboard'},
+];
+
+const router = new Router({
+    mode: 'history',
+    routes
+});
+
+
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -29,4 +86,5 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    router
 });

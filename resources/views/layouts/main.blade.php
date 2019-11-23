@@ -25,7 +25,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini">
-<div class="wrapper">
+<div class="wrapper" id="app">
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -168,7 +168,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <a href="index3.html" class="brand-link">
       <img src="{{asset('img/sdo_logo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">SDO Rizal</span>
     </a>
 
     <!-- Sidebar -->
@@ -179,7 +179,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="{{asset('img/profile_placeholder.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{auth()->user()->name}}</a>
         </div>
       </div>
 
@@ -189,20 +189,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
             <li class="nav-item">
-            <a href="#" class="nav-link">
+              <router-link to="/dashboard" class="nav-link" active-class="active" exact>
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                 Dashboard
-                </p>
-            </a>
+                </p>     
+              </router-link>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-users"></i>
-                    <p>
-                    Users
-                    </p>
-                </a>
+              <router-link to="/users" class="nav-link" active-class="active" exact>
+                  <i class="nav-icon fas fa-users"></i>
+                  <p>
+                  Users
+                  </p>
+              </router-link>
             </li>
           {{-- <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
@@ -244,11 +244,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper" id="app">
+  <div class="content-wrapper" >
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-            @yield('content')
+           <router-view></router-view>
+           <!-- set progressbar -->
+        <vue-progress-bar></vue-progress-bar>
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
@@ -268,13 +270,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-
-<!-- jQuery -->
-<script src="{{asset('js/jquery/jquery.min.js')}}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+{{-- <script src="{{asset('js/jquery/jquery.min.js')}}"></script> --}}
 <!-- Bootstrap 4 -->
-<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+{{-- <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script> --}}
 <!-- AdminLTE App -->
-<script src="{{asset('js/adminlte.min.js')}}"></script>
+{{-- <script src="{{asset('js/adminlte.min.js')}}"></script> --}}
+<!-- jQuery -->
 
 <script>
     var url = window.location;
@@ -284,10 +286,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       return this.href == url;
     }).addClass('active');
     
-    
-    
 </script>
-
 
 </body>
 </html>
