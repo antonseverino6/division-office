@@ -122,7 +122,7 @@
                 form: new Form({
                     name: '',
                     email: '',
-                    admin: '',
+                    admin: '0',
                     password: '',
                     password_confirmation: '',
                 }),

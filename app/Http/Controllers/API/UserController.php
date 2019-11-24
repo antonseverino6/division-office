@@ -5,8 +5,10 @@ namespace App\Http\Controllers\API;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Mail\NewUserMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -50,13 +52,20 @@ class UserController extends Controller
             'password_confirmation' => 'required',
         ]);
 
-        return User::create([
+        $user = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'admin' => $request['admin'],
             'registered_by' => auth('api')->user()->id,
             'password' => Hash::make($request['password']),
         ]);
+        
+        if ($user) {
+            $user_details = ['password' => $request['password'], 'admin' => $request['admin']];
+            Mail::to($request['email'])->send(new NewUserMail($user_details));
+            return $user;
+        }
+        
     }
 
     /**

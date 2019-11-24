@@ -2044,7 +2044,7 @@ __webpack_require__.r(__webpack_exports__);
       form: new Form({
         name: '',
         email: '',
-        admin: '',
+        admin: '0',
         password: '',
         password_confirmation: ''
       })
