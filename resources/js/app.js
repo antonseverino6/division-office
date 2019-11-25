@@ -51,10 +51,12 @@ Vue.use(Router);
 
 import User from './components/UserComponent.vue';
 import Dashboard from './components/DashboardComponent.vue';
+import School from './components/SchoolComponent.vue';
 
 export const routes = [
     { path: '/users', component: User, name: 'User' },
-    { path: '/dashboard', component: Dashboard, name: 'Dashboard'},
+    { path: '/dashboard', component: Dashboard, name: 'Dashboard' },
+    { path: '/schools', component: School, name: 'School' },
 ];
 
 const router = new Router({

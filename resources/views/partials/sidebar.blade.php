@@ -40,7 +40,7 @@
               </router-link>
             </li>
             <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
+                <a href="#" class="nav-link" active-class="active" exact>
                     <i class="fas fa-tools"></i></i>
                 <p>
                     Settings
@@ -49,10 +49,10 @@
                 </a>
                 <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="/school" class="nav-link" active-class="active" exact>
+                    <router-link to="/schools" class="nav-link" active-class="active" exact>
                     <i class="far fa-circle nav-icon"></i>
                     <p>Schools</p>
-                    </a>
+                    </router-link>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link" active-class="active" exact>

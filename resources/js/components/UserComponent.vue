@@ -176,9 +176,10 @@
                                 
                                 Swal.fire(
                                 'Deleted!',
-                                'Your file has been deleted.',
+                                'User been deleted.',
                                 'success'
                                 );
+
                                 Fire.$emit('reloadUsers');
                             })
                             .catch(() => {
@@ -188,7 +189,6 @@
                                 'warning'
                                 )    
                             })
-
                     }
                 })
             }
