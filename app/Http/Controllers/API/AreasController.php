@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Area;
 use App\Http\Controllers\Controller;
-use App\School;
 use Illuminate\Http\Request;
 
-class SchoolsController extends Controller
+class AreasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,9 @@ class SchoolsController extends Controller
      */
     public function index()
     {
-        return School::all();
+        return Area::with('subject')
+                    ->orderBy('subject_id')
+                    ->get();
     }
 
     /**
@@ -37,13 +39,14 @@ class SchoolsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => ['required', 'unique:schools'],
-        ]);
-            
-        return School::create([
-            'name' => $request['name'],
+            'name' => 'required',
+            'subject' => 'required',
         ]);
 
+        return Area::create([
+            'name' => $request['name'],
+            'subject_id' => $request['subject'],
+        ]);
     }
 
     /**
@@ -75,17 +78,19 @@ class SchoolsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, School $school)
+    public function update(Request $request, Area $area)
     {
         $this->validate($request, [
-            'name' => 'required|unique:schools,id,' . $request['id'],
+            'name' => 'required',
+            'subject_id' => 'required',
         ]);
 
-        $school->update([
+        $area->update([
             'name' => $request['name'],
+            'subject_id' => $request['subject_id'],
         ]);
 
-        return ['message', 'successfully updated'];
+        return ['message' => 'are updated successfully'];
     }
 
     /**
@@ -94,10 +99,10 @@ class SchoolsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(School $school)
+    public function destroy(Area $area)
     {
-        $school->delete();
+        $area->delete();
 
-        return ['message' => 'deleted successfully'];
+        return ['message', 'area deleted successfully'];
     }
 }

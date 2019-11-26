@@ -55,11 +55,17 @@
                     </router-link>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link" active-class="active" exact>
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Inactive Page</p>
-                    </a>
+                    <router-link to="/subjects" class="nav-link" active-class="active" exact>
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Subjects</p>
+                    </router-link>
                 </li>
+                <li class="nav-item">
+                  <router-link to="/type-of-employee" class="nav-link" active-class="active" exact>
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Type of Employee</p>
+                  </router-link>
+              </li>
                 </ul>
             </li>
           {{-- <li class="nav-item">

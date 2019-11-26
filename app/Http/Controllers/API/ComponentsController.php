@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Component;
 use App\Http\Controllers\Controller;
-use App\School;
 use Illuminate\Http\Request;
 
-class SchoolsController extends Controller
+class ComponentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,9 @@ class SchoolsController extends Controller
      */
     public function index()
     {
-        return School::all();
+        return Component::with('area')
+                        ->orderBy('area_id')
+                        ->get();
     }
 
     /**
@@ -37,13 +39,14 @@ class SchoolsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => ['required', 'unique:schools'],
-        ]);
-            
-        return School::create([
-            'name' => $request['name'],
+            'name' => 'required',
+            'area' => 'required',
         ]);
 
+        return Component::create([
+            'name' => $request->name,
+            'area_id' => $request->area,
+        ]);
     }
 
     /**
@@ -75,17 +78,19 @@ class SchoolsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, School $school)
+    public function update(Request $request, Component $component)
     {
         $this->validate($request, [
-            'name' => 'required|unique:schools,id,' . $request['id'],
+            'name' => 'required',
+            'area_id' => 'required',
         ]);
 
-        $school->update([
-            'name' => $request['name'],
+        $component->update([
+            'name' => $request->name,
+            'area_id' => $request->area_id,
         ]);
 
-        return ['message', 'successfully updated'];
+        return ['message' => 'updated successfully'];
     }
 
     /**
@@ -94,9 +99,9 @@ class SchoolsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(School $school)
+    public function destroy(Component $component)
     {
-        $school->delete();
+        $component->delete();
 
         return ['message' => 'deleted successfully'];
     }

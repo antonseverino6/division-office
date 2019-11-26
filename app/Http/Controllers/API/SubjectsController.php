@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\School;
+use App\Subject;
 use Illuminate\Http\Request;
 
-class SchoolsController extends Controller
+class SubjectsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class SchoolsController extends Controller
      */
     public function index()
     {
-        return School::all();
+        return Subject::all();
     }
 
     /**
@@ -37,10 +37,10 @@ class SchoolsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => ['required', 'unique:schools'],
+            'name' => 'required|unique:subjects',
         ]);
-            
-        return School::create([
+
+        return Subject::create([
             'name' => $request['name'],
         ]);
 
@@ -75,17 +75,17 @@ class SchoolsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, School $school)
+    public function update(Request $request, Subject $subject)
     {
         $this->validate($request, [
-            'name' => 'required|unique:schools,id,' . $request['id'],
+            'name' => 'required|unique:subjects,name,' . $request['id'],
         ]);
 
-        $school->update([
+        $subject->update([
             'name' => $request['name'],
         ]);
 
-        return ['message', 'successfully updated'];
+        return ['message' => 'updated successfully'];
     }
 
     /**
@@ -94,10 +94,10 @@ class SchoolsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(School $school)
+    public function destroy(Subject $subject)
     {
-        $school->delete();
+        $subject->delete();
 
-        return ['message' => 'deleted successfully'];
+        return ['messsage' => 'deleted successfully'];
     }
 }

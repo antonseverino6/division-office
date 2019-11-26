@@ -52,11 +52,13 @@ Vue.use(Router);
 import User from './components/UserComponent.vue';
 import Dashboard from './components/DashboardComponent.vue';
 import School from './components/SchoolComponent.vue';
+import Subject from './components/SubjectComponent.vue';
 
 export const routes = [
     { path: '/users', component: User, name: 'User' },
     { path: '/dashboard', component: Dashboard, name: 'Dashboard' },
     { path: '/schools', component: School, name: 'School' },
+    { path: '/subjects', component: Subject, name: 'Subject' },
 ];
 
 const router = new Router({
