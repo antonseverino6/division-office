@@ -22,4 +22,8 @@ Route::resource('schools', 'API\SchoolsController');
 Route::resource('subjects', 'API\SubjectsController');
 Route::resource('areas', 'API\AreasController');
 Route::resource('components', 'API\ComponentsController');
+Route::resource('typeOfEmployees', 'API\TypeOfEmployeesController');
+Route::resource('employeeBase', 'API\EmployeeBaseController');
+Route::resource('positions', 'API\PositionsController');
+Route::patch('linkSubject/{position}', 'API\PositionsController@link_subject');
 // Route::get('users', 'API\UserController');

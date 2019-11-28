@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
+use App\EmployeeBase;
 use App\Http\Controllers\Controller;
-use App\School;
 use Illuminate\Http\Request;
 
-class SchoolsController extends Controller
+class EmployeeBaseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class SchoolsController extends Controller
      */
     public function index()
     {
-        return School::all();
+        return EmployeeBase::with('typeOfEmployee')->get();
     }
 
     /**
@@ -37,13 +37,14 @@ class SchoolsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => ['required', 'unique:schools'],
-        ]);
-            
-        return School::create([
-            'name' => $request['name'],
+            'name' => 'required',
+            'employeeType' => 'required',
         ]);
 
+        return EmployeeBase::create([
+            'name' => $request->name,
+            'type_of_employee_id' => $request->employeeType,
+        ]);
     }
 
     /**
@@ -75,17 +76,22 @@ class SchoolsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, School $school)
+    public function update(Request $request, EmployeeBase $employeeBase)
     {
         $this->validate($request, [
-            'name' => 'required|unique:schools,name,' . $request['id'],
+            'name' => 'required',
+            'type_of_employee_id' => 'required',
         ]);
 
-        $school->update([
-            'name' => $request['name'],
+
+        $employeeBase->update([
+            'name' => $request->name,
+            'type_of_employee_id' => $request->type_of_employee_id,
         ]);
 
-        return ['message', 'successfully updated'];
+             return ['message' => 'updated successfully'];
+
+       
     }
 
     /**
@@ -94,9 +100,9 @@ class SchoolsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(School $school)
+    public function destroy(EmployeeBase $employeeBase)
     {
-        $school->delete();
+        $employeeBase->delete();
 
         return ['message' => 'deleted successfully'];
     }

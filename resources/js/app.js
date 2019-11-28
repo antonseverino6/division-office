@@ -27,6 +27,11 @@ const Toast = Swal.mixin({
     }
   });
 
+import ToggleButton from 'vue-js-toggle-button'
+
+Vue.use(ToggleButton)
+
+
 window.Toast = Toast;  
 
 import VueProgressBar from 'vue-progressbar'
@@ -53,12 +58,14 @@ import User from './components/UserComponent.vue';
 import Dashboard from './components/DashboardComponent.vue';
 import School from './components/SchoolComponent.vue';
 import Subject from './components/SubjectComponent.vue';
+import TypeOfEmployee from './components/TypeOfEmployeeComponent.vue';
 
 export const routes = [
     { path: '/users', component: User, name: 'User' },
     { path: '/dashboard', component: Dashboard, name: 'Dashboard' },
     { path: '/schools', component: School, name: 'School' },
     { path: '/subjects', component: Subject, name: 'Subject' },
+    { path: '/type-of-employee', component: TypeOfEmployee, name: 'TypeOfEmployee' },
 ];
 
 const router = new Router({

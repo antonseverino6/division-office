@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\School;
+use App\TypeOfEmployee;
 use Illuminate\Http\Request;
 
-class SchoolsController extends Controller
+class TypeOfEmployeesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class SchoolsController extends Controller
      */
     public function index()
     {
-        return School::all();
+        return TypeOfEmployee::all();
     }
 
     /**
@@ -37,13 +37,12 @@ class SchoolsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => ['required', 'unique:schools'],
-        ]);
-            
-        return School::create([
-            'name' => $request['name'],
+            'name' => 'required',
         ]);
 
+        return TypeOfEmployee::create([
+            'name' => $request->name,
+        ]);
     }
 
     /**
@@ -75,17 +74,17 @@ class SchoolsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, School $school)
+    public function update(Request $request, TypeOfEmployee $typeOfEmployee)
     {
         $this->validate($request, [
-            'name' => 'required|unique:schools,name,' . $request['id'],
+            'name' => 'required',
         ]);
 
-        $school->update([
-            'name' => $request['name'],
+        $typeOfEmployee->update([
+            'name' => $request->name,
         ]);
 
-        return ['message', 'successfully updated'];
+        return ['message' => 'updated successfully'];
     }
 
     /**
@@ -94,9 +93,9 @@ class SchoolsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(School $school)
+    public function destroy(TypeOfEmployee $typeOfEmployee)
     {
-        $school->delete();
+        $typeOfEmployee->delete();
 
         return ['message' => 'deleted successfully'];
     }

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\School;
+use App\Position;
 use Illuminate\Http\Request;
 
-class SchoolsController extends Controller
+class PositionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class SchoolsController extends Controller
      */
     public function index()
     {
-        return School::all();
+        return  Position::with('typeOfEmployee')->get();
     }
 
     /**
@@ -37,11 +37,14 @@ class SchoolsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => ['required', 'unique:schools'],
+            'name' => 'required',
+            'employeeType' => 'required',
         ]);
-            
-        return School::create([
-            'name' => $request['name'],
+
+        return Position::create([
+            'name' => $request->name,
+            'type_of_employee_id' => $request->employeeType,
+            'subject' => 0,
         ]);
 
     }
@@ -75,28 +78,38 @@ class SchoolsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, School $school)
+    public function update(Request $request, Position $position)
     {
         $this->validate($request, [
-            'name' => 'required|unique:schools,name,' . $request['id'],
+            'name' => 'required',
+            'type_of_employee_id' => 'required',
         ]);
 
-        $school->update([
-            'name' => $request['name'],
+        $position->update([
+            'name' => $request->name,
+            'type_of_employee_id' => $request->type_of_employee_id,
         ]);
-
-        return ['message', 'successfully updated'];
     }
 
+    public function link_subject(Request $request, Position $position) 
+    {
+
+        $position->update([
+            'subject' => ! $position->subject,
+        ]);
+
+        return ['message' => 'updated successfully'];
+
+    }
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(School $school)
+    public function destroy(Position $position)
     {
-        $school->delete();
+        $position->delete();
 
         return ['message' => 'deleted successfully'];
     }

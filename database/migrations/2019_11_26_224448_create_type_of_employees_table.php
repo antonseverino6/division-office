@@ -15,6 +15,7 @@ class CreateTypeOfEmployeesTable extends Migration
     {
         Schema::create('type_of_employees', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
             $table->timestamps();
         });
     }
