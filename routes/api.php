@@ -26,4 +26,6 @@ Route::resource('typeOfEmployees', 'API\TypeOfEmployeesController');
 Route::resource('employeeBase', 'API\EmployeeBaseController');
 Route::resource('positions', 'API\PositionsController');
 Route::patch('linkSubject/{position}', 'API\PositionsController@link_subject');
+Route::resource('levelsOfCivil', 'API\LevelsOfCivilsController');
+Route::resource('grade-levels', 'API\GradeLevelsController');
 // Route::get('users', 'API\UserController');

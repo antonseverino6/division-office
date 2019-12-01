@@ -1879,6 +1879,214 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EmployeeBaseComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/EmployeeBaseComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['EmployeeTypeObject'],
+  data: function data() {
+    return {
+      employeeBases: {},
+      addEmpBaseForm: new Form({
+        name: '',
+        employeeType: ''
+      }),
+      editEmpBaseForm: new Form({
+        id: '',
+        name: '',
+        type_of_employee_id: ''
+      })
+    };
+  },
+  mounted: function mounted() {
+    console.log('Component mounted.');
+  },
+  methods: {
+    loadEmployeeBase: function loadEmployeeBase() {
+      var _this = this;
+
+      axios.get('api/employeeBase').then(function (_ref) {
+        var data = _ref.data;
+        return _this.employeeBases = data;
+      });
+    },
+    AddEmployeeBase: function AddEmployeeBase() {
+      var _this2 = this;
+
+      this.$Progress.start();
+      this.addEmpBaseForm.post('api/employeeBase').then(function () {
+        Toast.fire({
+          icon: 'success',
+          title: 'Employee Type added successfully'
+        });
+
+        _this2.addEmpBaseForm.reset();
+
+        _this2.addEmpBaseForm.clear();
+
+        Fire.$emit('reloadEmployeeBase');
+
+        _this2.$Progress.finish();
+      })["catch"](function () {
+        _this2.$Progress.fail();
+      });
+    },
+    editEmployeeBase: function editEmployeeBase(employeeBase) {
+      this.editEmpBaseForm.reset();
+      this.editEmpBaseForm.clear();
+      $('#editEmpBaseModal').modal('show');
+      this.editEmpBaseForm.fill(employeeBase);
+    },
+    updateEmployeeBase: function updateEmployeeBase() {
+      var _this3 = this;
+
+      this.$Progress.start();
+      this.editEmpBaseForm.patch('api/employeeBase/' + this.editEmpBaseForm.id).then(function () {
+        Toast.fire({
+          icon: 'success',
+          title: 'Employee Base updated successfully'
+        });
+        $('#editEmpBaseModal').modal('hide');
+
+        _this3.$Progress.finish();
+
+        Fire.$emit('reloadEmployeeBase');
+      })["catch"](function () {
+        _this3.$Progress.fail();
+      });
+    },
+    deleteEmployeeBase: function deleteEmployeeBase(id) {
+      var _this4 = this;
+
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          _this4.editEmpBaseForm["delete"]('api/employeeBase/' + id).then(function () {
+            Swal.fire('Deleted!', 'Certain employee base has been deleted.', 'success');
+            Fire.$emit('reloadEmployeeBase');
+          })["catch"](function () {
+            Swal.fire('Something Went Wrong', '', 'warning');
+          });
+        }
+      });
+    }
+  },
+  created: function created() {
+    var _this5 = this;
+
+    this.loadEmployeeBase();
+    Fire.$on('reloadEmployeeBase', function () {
+      _this5.loadEmployeeBase();
+    });
+  },
+  computed: {
+    employeeTypes: function employeeTypes() {
+      return this.EmployeeTypeObject;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
@@ -1907,6 +2115,177 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LevelsOfCivilComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LevelsOfCivilComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      levelsOfCivils: {},
+      addCivilForm: new Form({
+        name: ''
+      }),
+      editCivilForm: new Form({
+        id: '',
+        name: ''
+      })
+    };
+  },
+  mounted: function mounted() {
+    console.log('Component mounted.');
+  },
+  methods: {
+    loadLevels: function loadLevels() {
+      var _this = this;
+
+      axios.get('api/levelsOfCivil').then(function (_ref) {
+        var data = _ref.data;
+        _this.levelsOfCivils = data;
+      })["catch"](function () {
+        alert('something went wrong');
+      });
+    },
+    addLevelOfCivil: function addLevelOfCivil() {
+      var _this2 = this;
+
+      this.addCivilForm.post('api/levelsOfCivil').then(function () {
+        _this2.addCivilForm.reset();
+
+        _this2.addCivilForm.clear();
+
+        Toast.fire({
+          icon: 'success',
+          title: 'Level of Civil added successfully'
+        });
+        Fire.$emit('reloadLevels');
+      });
+    },
+    editLevelOfCivil: function editLevelOfCivil(levelOfCivil) {
+      this.editCivilForm.clear();
+      this.editCivilForm.reset();
+      $('#editCivilModal').modal('show');
+      this.editCivilForm.fill(levelOfCivil);
+    },
+    updateLevelOfCivil: function updateLevelOfCivil() {
+      this.editCivilForm.patch('api/levelsOfCivil/' + this.editCivilForm.id).then(function () {
+        Toast.fire({
+          icon: 'success',
+          title: 'Level of Civil updated successfully'
+        });
+        $('#editCivilModal').modal('hide');
+        Fire.$emit('reloadLevels');
+      });
+    },
+    deleteLevelOfCivil: function deleteLevelOfCivil(id) {
+      var _this3 = this;
+
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          _this3.editCivilForm["delete"]('api/levelsOfCivil/' + id).then(function () {
+            Swal.fire('Deleted!', 'Certain level of civil has been deleted.', 'success');
+            Fire.$emit('reloadLevels');
+          })["catch"](function () {
+            Swal.fire('Something Went Wrong', '', 'warning');
+          });
+        }
+      });
+    }
+  },
+  created: function created() {
+    var _this4 = this;
+
+    this.loadLevels();
+    Fire.$on('reloadLevels', function () {
+      _this4.loadLevels();
+    });
   }
 });
 
@@ -2395,6 +2774,80 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2425,6 +2878,14 @@ __webpack_require__.r(__webpack_exports__);
         id: '',
         name: '',
         area_id: ''
+      }),
+      gradeLevels: {},
+      addGradeLevelForm: new Form({
+        name: ''
+      }),
+      editGradeLevelForm: new Form({
+        id: '',
+        name: ''
       })
     };
   },
@@ -2657,22 +3118,100 @@ __webpack_require__.r(__webpack_exports__);
           });
         }
       });
+    },
+    //END COMPONENT
+    loadGradeLevels: function loadGradeLevels() {
+      var _this13 = this;
+
+      //START GRADE LEVEL
+      axios.get('api/grade-levels').then(function (_ref4) {
+        var data = _ref4.data;
+        return _this13.gradeLevels = data;
+      });
+    },
+    addGradeLevel: function addGradeLevel() {
+      var _this14 = this;
+
+      this.$Progress.start();
+      this.addGradeLevelForm.post('api/grade-levels').then(function () {
+        Toast.fire({
+          icon: 'success',
+          title: 'Grade Level added successfully'
+        });
+
+        _this14.$Progress.finish();
+
+        Fire.$emit('reloadGradeLevels');
+
+        _this14.addGradeLevelForm.clear();
+
+        _this14.addGradeLevelForm.reset();
+      })["catch"](function () {
+        _this14.$Progress.fail();
+      });
+    },
+    editGradeLevel: function editGradeLevel(gradeLevel) {
+      this.editGradeLevelForm.clear();
+      this.editGradeLevelForm.reset();
+      $('#editGradeLevelModal').modal('show');
+      this.editGradeLevelForm.fill(gradeLevel);
+    },
+    updateGradeLevel: function updateGradeLevel() {
+      var _this15 = this;
+
+      this.editGradeLevelForm.patch('api/grade-levels/' + this.editGradeLevelForm.id).then(function () {
+        Toast.fire({
+          icon: 'success',
+          title: 'Grade Level updated successfully'
+        });
+        $('#editGradeLevelModal').modal('hide');
+
+        _this15.$Progress.finish();
+
+        Fire.$emit('reloadGradeLevels');
+      });
+    },
+    deleteGradeLevel: function deleteGradeLevel(id) {
+      var _this16 = this;
+
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          _this16.editGradeLevelForm["delete"]('api/grade-levels/' + id).then(function () {
+            Swal.fire('Deleted!', 'Certain grade level has been deleted.', 'success');
+            Fire.$emit('reloadGradeLevels');
+          })["catch"](function () {
+            Swal.fire('Something Went Wrong', '', 'warning');
+          });
+        }
+      });
     }
   },
   created: function created() {
-    var _this13 = this;
+    var _this17 = this;
 
     this.loadSubjects();
     this.loadAreas();
     this.loadComponents();
+    this.loadGradeLevels();
     Fire.$on('reloadSubjects', function () {
-      _this13.loadSubjects();
+      _this17.loadSubjects();
     });
     Fire.$on('reloadAreas', function () {
-      _this13.loadAreas();
+      _this17.loadAreas();
     });
     Fire.$on('reloadComponents', function () {
-      _this13.loadComponents();
+      _this17.loadComponents();
+    });
+    Fire.$on('reloadGradeLevels', function () {
+      _this17.loadGradeLevels();
     });
   }
 });
@@ -2688,6 +3227,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _LevelsOfCivilComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LevelsOfCivilComponent.vue */ "./resources/js/components/LevelsOfCivilComponent.vue");
+/* harmony import */ var _EmployeeBaseComponent_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EmployeeBaseComponent.vue */ "./resources/js/components/EmployeeBaseComponent.vue");
 //
 //
 //
@@ -2882,81 +3423,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    LevelsOfCivil: _LevelsOfCivilComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    EmployeeBase: _EmployeeBaseComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
   data: function data() {
     return {
       employeeTypes: {},
@@ -43672,6 +44145,435 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EmployeeBaseComponent.vue?vue&type=template&id=3f8f64c3&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/EmployeeBaseComponent.vue?vue&type=template&id=3f8f64c3& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "form",
+      {
+        attrs: { action: "", method: "post" },
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.AddEmployeeBase()
+          }
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "form-group" },
+          [
+            _c("label", { attrs: { for: "name" } }, [_vm._v("Employee Base")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.addEmpBaseForm.name,
+                  expression: "addEmpBaseForm.name"
+                }
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": _vm.addEmpBaseForm.errors.has("name") },
+              attrs: { type: "text", name: "name", id: "name" },
+              domProps: { value: _vm.addEmpBaseForm.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.addEmpBaseForm, "name", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("has-error", {
+              attrs: { form: _vm.addEmpBaseForm, field: "name" }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group" },
+          [
+            _c("label", { attrs: { for: "emptype" } }, [
+              _vm._v("Employee Type")
+            ]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.addEmpBaseForm.employeeType,
+                    expression: "addEmpBaseForm.employeeType"
+                  }
+                ],
+                staticClass: "form-control",
+                class: {
+                  "is-invalid": _vm.addEmpBaseForm.errors.has("employeeType")
+                },
+                attrs: { id: "emptype" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.addEmpBaseForm,
+                      "employeeType",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              _vm._l(_vm.employeeTypes, function(employeeType) {
+                return _c(
+                  "option",
+                  {
+                    key: employeeType.id,
+                    domProps: { value: employeeType.id }
+                  },
+                  [_vm._v(_vm._s(employeeType.name))]
+                )
+              }),
+              0
+            ),
+            _vm._v(" "),
+            _c("has-error", {
+              attrs: { form: _vm.addEmpBaseForm, field: "employeeType" }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-success float-right",
+            attrs: { type: "submit" }
+          },
+          [_vm._v("Add Employee Base")]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c("table", { staticClass: "table" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.employeeBases, function(employeeBase) {
+          return _c("tr", { key: employeeBase.id }, [
+            _c("td", [_vm._v(_vm._s(employeeBase.name))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(employeeBase.type_of_employee.name))]),
+            _vm._v(" "),
+            _c("td", [
+              _c(
+                "a",
+                {
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      return _vm.editEmployeeBase(employeeBase)
+                    }
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "far fa-edit",
+                    staticStyle: { color: "green" }
+                  })
+                ]
+              ),
+              _vm._v("\n                    /\n                    "),
+              _c(
+                "a",
+                {
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      return _vm.deleteEmployeeBase(employeeBase.id)
+                    }
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "far fa-trash-alt",
+                    staticStyle: { color: "red" }
+                  })
+                ]
+              )
+            ])
+          ])
+        }),
+        0
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "editEmpBaseModal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalCenterTitle",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c(
+                  "form",
+                  {
+                    attrs: { action: "", method: "post" },
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.updateEmployeeBase()
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "form-group" },
+                      [
+                        _c("label", { attrs: { for: "name" } }, [
+                          _vm._v("Component Name")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.editEmpBaseForm.name,
+                              expression: "editEmpBaseForm.name"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          class: {
+                            "is-invalid": _vm.editEmpBaseForm.errors.has("name")
+                          },
+                          attrs: { type: "text", name: "name" },
+                          domProps: { value: _vm.editEmpBaseForm.name },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.editEmpBaseForm,
+                                "name",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("has-error", {
+                          attrs: { form: _vm.editEmpBaseForm, field: "name" }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "form-group" },
+                      [
+                        _c("label", { attrs: { for: "employeeType" } }, [
+                          _vm._v("Employee Type")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.editEmpBaseForm.type_of_employee_id,
+                                expression:
+                                  "editEmpBaseForm.type_of_employee_id"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            class: {
+                              "is-invalid": _vm.editEmpBaseForm.errors.has(
+                                "type_of_employee_id"
+                              )
+                            },
+                            attrs: {
+                              name: "type_of_employee_id",
+                              id: "employeeType"
+                            },
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.editEmpBaseForm,
+                                  "type_of_employee_id",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          _vm._l(_vm.employeeTypes, function(employeeType) {
+                            return _c(
+                              "option",
+                              {
+                                key: employeeType.id,
+                                domProps: { value: employeeType.id }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                        " +
+                                    _vm._s(employeeType.name) +
+                                    "\n                    "
+                                )
+                              ]
+                            )
+                          }),
+                          0
+                        ),
+                        _vm._v(" "),
+                        _c("has-error", {
+                          attrs: {
+                            form: _vm.editEmpBaseForm,
+                            field: "type_of_employee_id"
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _vm._m(2)
+                  ]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Employee Base")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Assigned To")]),
+        _vm._v(" "),
+        _c("th")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLongTitle" } },
+        [_vm._v("Edit Employee Base")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-success", attrs: { type: "submit" } },
+        [_vm._v("Update Employee Base")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
 /*!*******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
@@ -43710,6 +44612,288 @@ var staticRenderFns = [
           ])
         ])
       ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LevelsOfCivilComponent.vue?vue&type=template&id=b2a8948a&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LevelsOfCivilComponent.vue?vue&type=template&id=b2a8948a& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "form",
+      {
+        attrs: { action: "", method: "post" },
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.addLevelOfCivil()
+          }
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "form-group" },
+          [
+            _c("label", { attrs: { for: "level-of-civil" } }, [
+              _vm._v("Levels Of Civil Service Elegibility")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.addCivilForm.name,
+                  expression: "addCivilForm.name"
+                }
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": _vm.addCivilForm.errors.has("name") },
+              attrs: { type: "text", id: "level-of-civil" },
+              domProps: { value: _vm.addCivilForm.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.addCivilForm, "name", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("has-error", {
+              attrs: { form: _vm.addCivilForm, field: "name" }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-success float-right",
+            attrs: { type: "submit" }
+          },
+          [_vm._v("Add Level")]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c("table", { staticClass: "table table-hover" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.levelsOfCivils, function(levelOfCivil) {
+          return _c("tr", { key: levelOfCivil.id }, [
+            _c("td", [_vm._v(_vm._s(levelOfCivil.name))]),
+            _vm._v(" "),
+            _c("td", [
+              _c(
+                "a",
+                {
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      return _vm.editLevelOfCivil(levelOfCivil)
+                    }
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "far fa-edit",
+                    staticStyle: { color: "green" }
+                  })
+                ]
+              ),
+              _vm._v("\n                    /\n                    "),
+              _c(
+                "a",
+                {
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      return _vm.deleteLevelOfCivil(levelOfCivil.id)
+                    }
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "far fa-trash-alt",
+                    staticStyle: { color: "red" }
+                  })
+                ]
+              )
+            ])
+          ])
+        }),
+        0
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "editCivilModal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalCenterTitle",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c(
+                  "form",
+                  {
+                    attrs: { action: "", method: "post" },
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.updateLevelOfCivil()
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "form-group" },
+                      [
+                        _c("label", { attrs: { for: "name" } }, [
+                          _vm._v("Level of Civil Service Elegibility")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.editCivilForm.name,
+                              expression: "editCivilForm.name"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          class: {
+                            "is-invalid": _vm.editCivilForm.errors.has("name")
+                          },
+                          attrs: { type: "text", name: "name" },
+                          domProps: { value: _vm.editCivilForm.name },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.editCivilForm,
+                                "name",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("has-error", {
+                          attrs: { form: _vm.editCivilForm, field: "name" }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _vm._m(2)
+                  ]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [_c("th", [_vm._v("Name")]), _vm._v(" "), _c("th")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLongTitle" } },
+        [_vm._v("Edit Civil Service Elegibility")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-success", attrs: { type: "submit" } },
+        [_vm._v("Update Level of Civil")]
+      )
     ])
   }
 ]
@@ -44327,7 +45511,7 @@ var render = function() {
                           attrs: {
                             type: "text",
                             id: "name",
-                            placeholder: "Subject Name"
+                            placeholder: "Area Name"
                           },
                           domProps: { value: _vm.addAreaForm.name },
                           on: {
@@ -44723,7 +45907,7 @@ var render = function() {
                           attrs: {
                             type: "text",
                             id: "name",
-                            placeholder: "Subject Name"
+                            placeholder: "Component Name"
                           },
                           domProps: { value: _vm.addComponentForm.name },
                           on: {
@@ -45073,6 +46257,243 @@ var render = function() {
                   ]
                 )
               ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "card-body tab-pane",
+                attrs: { id: "gradeLevel", "aria-labelledby": "gradeLevel-tab" }
+              },
+              [
+                _c(
+                  "form",
+                  {
+                    attrs: { action: "", method: "post" },
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.addGradeLevel()
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "form-group" },
+                      [
+                        _c("label", { attrs: { for: "name" } }, [
+                          _vm._v("Grade Level")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.addGradeLevelForm.name,
+                              expression: "addGradeLevelForm.name"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          class: {
+                            "is-invalid": _vm.addGradeLevelForm.errors.has(
+                              "name"
+                            )
+                          },
+                          attrs: {
+                            type: "text",
+                            id: "name",
+                            placeholder: "Grade Level Name"
+                          },
+                          domProps: { value: _vm.addGradeLevelForm.name },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.addGradeLevelForm,
+                                "name",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("has-error", {
+                          attrs: { form: _vm.addGradeLevelForm, field: "name" }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success float-right",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Add Grade Level")]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("table", { staticClass: "table table-hover" }, [
+                  _vm._m(10),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.gradeLevels, function(gradeLevel) {
+                      return _c("tr", { key: gradeLevel.id }, [
+                        _c("td", [_vm._v(_vm._s(gradeLevel.name))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c(
+                            "a",
+                            {
+                              attrs: { href: "#" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.editGradeLevel(gradeLevel)
+                                }
+                              }
+                            },
+                            [
+                              _c("i", {
+                                staticClass: "far fa-edit",
+                                staticStyle: { color: "green" }
+                              })
+                            ]
+                          ),
+                          _vm._v(
+                            "\n                                        /\n                                        "
+                          ),
+                          _c(
+                            "a",
+                            {
+                              attrs: { href: "#" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteGradeLevel(gradeLevel.id)
+                                }
+                              }
+                            },
+                            [
+                              _c("i", {
+                                staticClass: "far fa-trash-alt",
+                                staticStyle: { color: "red" }
+                              })
+                            ]
+                          )
+                        ])
+                      ])
+                    }),
+                    0
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "modal fade",
+                    attrs: {
+                      id: "editGradeLevelModal",
+                      tabindex: "-1",
+                      role: "dialog",
+                      "aria-labelledby": "exampleModalCenterTitle",
+                      "aria-hidden": "true"
+                    }
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "modal-dialog modal-dialog-centered",
+                        attrs: { role: "document" }
+                      },
+                      [
+                        _c("div", { staticClass: "modal-content" }, [
+                          _vm._m(11),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "modal-body" }, [
+                            _c(
+                              "form",
+                              {
+                                attrs: { action: "", method: "post" },
+                                on: {
+                                  submit: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.updateGradeLevel()
+                                  }
+                                }
+                              },
+                              [
+                                _c(
+                                  "div",
+                                  { staticClass: "form-group" },
+                                  [
+                                    _c("label", { attrs: { for: "name" } }, [
+                                      _vm._v("Area Name")
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.editGradeLevelForm.name,
+                                          expression: "editGradeLevelForm.name"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      class: {
+                                        "is-invalid": _vm.editGradeLevelForm.errors.has(
+                                          "name"
+                                        )
+                                      },
+                                      attrs: {
+                                        type: "text",
+                                        name: "name",
+                                        placeholder: "Name"
+                                      },
+                                      domProps: {
+                                        value: _vm.editGradeLevelForm.name
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.editGradeLevelForm,
+                                            "name",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("has-error", {
+                                      attrs: {
+                                        form: _vm.editGradeLevelForm,
+                                        field: "name"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _vm._m(12)
+                              ]
+                            )
+                          ])
+                        ])
+                      ]
+                    )
+                  ]
+                )
+              ]
             )
           ])
         ])
@@ -45144,6 +46565,24 @@ var staticRenderFns = [
                 }
               },
               [_vm._v("Components")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link",
+                attrs: {
+                  id: "gradeLevel-tab",
+                  "data-toggle": "tab",
+                  href: "#gradeLevel",
+                  role: "tab",
+                  "aria-controls": "gradeLevel",
+                  "aria-selected": "true"
+                }
+              },
+              [_vm._v("Grade Level")]
             )
           ])
         ]
@@ -45321,6 +46760,60 @@ var staticRenderFns = [
         "button",
         { staticClass: "btn btn-success", attrs: { type: "submit" } },
         [_vm._v("Update Component")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [_c("th", [_vm._v("Grade Level")]), _vm._v(" "), _c("th")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLongTitle" } },
+        [_vm._v("Edit Grade Level")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-success", attrs: { type: "submit" } },
+        [_vm._v("Update Grade Level")]
       )
     ])
   }
@@ -45593,388 +47086,11 @@ var render = function() {
                 }
               },
               [
-                _c(
-                  "form",
-                  {
-                    attrs: { action: "", method: "post" },
-                    on: {
-                      submit: function($event) {
-                        $event.preventDefault()
-                        return _vm.AddEmployeeBase()
-                      }
-                    }
-                  },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "form-group" },
-                      [
-                        _c("label", { attrs: { for: "name" } }, [
-                          _vm._v("Employee Base")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.addEmpBaseForm.name,
-                              expression: "addEmpBaseForm.name"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          class: {
-                            "is-invalid": _vm.addEmpBaseForm.errors.has("name")
-                          },
-                          attrs: { type: "text", name: "name", id: "name" },
-                          domProps: { value: _vm.addEmpBaseForm.name },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.addEmpBaseForm,
-                                "name",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("has-error", {
-                          attrs: { form: _vm.addEmpBaseForm, field: "name" }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "form-group" },
-                      [
-                        _c("label", { attrs: { for: "emptype" } }, [
-                          _vm._v("Employee Type")
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "select",
-                          {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.addEmpBaseForm.employeeType,
-                                expression: "addEmpBaseForm.employeeType"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            class: {
-                              "is-invalid": _vm.addEmpBaseForm.errors.has(
-                                "employeeType"
-                              )
-                            },
-                            attrs: { id: "emptype" },
-                            on: {
-                              change: function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.$set(
-                                  _vm.addEmpBaseForm,
-                                  "employeeType",
-                                  $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                )
-                              }
-                            }
-                          },
-                          _vm._l(_vm.employeeTypes, function(employeeType) {
-                            return _c(
-                              "option",
-                              {
-                                key: employeeType.id,
-                                domProps: { value: employeeType.id }
-                              },
-                              [_vm._v(_vm._s(employeeType.name))]
-                            )
-                          }),
-                          0
-                        ),
-                        _vm._v(" "),
-                        _c("has-error", {
-                          attrs: {
-                            form: _vm.addEmpBaseForm,
-                            field: "employeeType"
-                          }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-success float-right",
-                        attrs: { type: "submit" }
-                      },
-                      [_vm._v("Add Employee Base")]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c("table", { staticClass: "table" }, [
-                  _vm._m(4),
-                  _vm._v(" "),
-                  _c(
-                    "tbody",
-                    _vm._l(_vm.employeeBases, function(employeeBase) {
-                      return _c("tr", { key: employeeBase.id }, [
-                        _c("td", [_vm._v(_vm._s(employeeBase.name))]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(_vm._s(employeeBase.type_of_employee.name))
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c(
-                            "a",
-                            {
-                              attrs: { href: "#" },
-                              on: {
-                                click: function($event) {
-                                  return _vm.editEmployeeBase(employeeBase)
-                                }
-                              }
-                            },
-                            [
-                              _c("i", {
-                                staticClass: "far fa-edit",
-                                staticStyle: { color: "green" }
-                              })
-                            ]
-                          ),
-                          _vm._v(
-                            "\n                                        /\n                                        "
-                          ),
-                          _c(
-                            "a",
-                            {
-                              attrs: { href: "#" },
-                              on: {
-                                click: function($event) {
-                                  return _vm.deleteEmployeeBase(employeeBase.id)
-                                }
-                              }
-                            },
-                            [
-                              _c("i", {
-                                staticClass: "far fa-trash-alt",
-                                staticStyle: { color: "red" }
-                              })
-                            ]
-                          )
-                        ])
-                      ])
-                    }),
-                    0
-                  )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "modal fade",
-                    attrs: {
-                      id: "editEmpBaseModal",
-                      tabindex: "-1",
-                      role: "dialog",
-                      "aria-labelledby": "exampleModalCenterTitle",
-                      "aria-hidden": "true"
-                    }
-                  },
-                  [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "modal-dialog modal-dialog-centered",
-                        attrs: { role: "document" }
-                      },
-                      [
-                        _c("div", { staticClass: "modal-content" }, [
-                          _vm._m(5),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "modal-body" }, [
-                            _c(
-                              "form",
-                              {
-                                attrs: { action: "", method: "post" },
-                                on: {
-                                  submit: function($event) {
-                                    $event.preventDefault()
-                                    return _vm.updateEmployeeBase()
-                                  }
-                                }
-                              },
-                              [
-                                _c(
-                                  "div",
-                                  { staticClass: "form-group" },
-                                  [
-                                    _c("label", { attrs: { for: "name" } }, [
-                                      _vm._v("Component Name")
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.editEmpBaseForm.name,
-                                          expression: "editEmpBaseForm.name"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      class: {
-                                        "is-invalid": _vm.editEmpBaseForm.errors.has(
-                                          "name"
-                                        )
-                                      },
-                                      attrs: { type: "text", name: "name" },
-                                      domProps: {
-                                        value: _vm.editEmpBaseForm.name
-                                      },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.$set(
-                                            _vm.editEmpBaseForm,
-                                            "name",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("has-error", {
-                                      attrs: {
-                                        form: _vm.editEmpBaseForm,
-                                        field: "name"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  { staticClass: "form-group" },
-                                  [
-                                    _c(
-                                      "label",
-                                      { attrs: { for: "employeeType" } },
-                                      [_vm._v("Employee Type")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "select",
-                                      {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value:
-                                              _vm.editEmpBaseForm
-                                                .type_of_employee_id,
-                                            expression:
-                                              "editEmpBaseForm.type_of_employee_id"
-                                          }
-                                        ],
-                                        staticClass: "form-control",
-                                        class: {
-                                          "is-invalid": _vm.editEmpBaseForm.errors.has(
-                                            "type_of_employee_id"
-                                          )
-                                        },
-                                        attrs: {
-                                          name: "type_of_employee_id",
-                                          id: "employeeType"
-                                        },
-                                        on: {
-                                          change: function($event) {
-                                            var $$selectedVal = Array.prototype.filter
-                                              .call(
-                                                $event.target.options,
-                                                function(o) {
-                                                  return o.selected
-                                                }
-                                              )
-                                              .map(function(o) {
-                                                var val =
-                                                  "_value" in o
-                                                    ? o._value
-                                                    : o.value
-                                                return val
-                                              })
-                                            _vm.$set(
-                                              _vm.editEmpBaseForm,
-                                              "type_of_employee_id",
-                                              $event.target.multiple
-                                                ? $$selectedVal
-                                                : $$selectedVal[0]
-                                            )
-                                          }
-                                        }
-                                      },
-                                      _vm._l(_vm.employeeTypes, function(
-                                        employeeType
-                                      ) {
-                                        return _c(
-                                          "option",
-                                          {
-                                            key: employeeType.id,
-                                            domProps: { value: employeeType.id }
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\n                                            " +
-                                                _vm._s(employeeType.name) +
-                                                "\n                                        "
-                                            )
-                                          ]
-                                        )
-                                      }),
-                                      0
-                                    ),
-                                    _vm._v(" "),
-                                    _c("has-error", {
-                                      attrs: {
-                                        form: _vm.editEmpBaseForm,
-                                        field: "type_of_employee_id"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _vm._m(6)
-                              ]
-                            )
-                          ])
-                        ])
-                      ]
-                    )
-                  ]
-                )
-              ]
+                _c("employee-base", {
+                  attrs: { EmployeeTypeObject: _vm.employeeTypes }
+                })
+              ],
+              1
             ),
             _vm._v(" "),
             _c(
@@ -46127,7 +47243,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("table", { staticClass: "table" }, [
-                  _vm._m(7),
+                  _vm._m(4),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -46230,7 +47346,7 @@ var render = function() {
                       },
                       [
                         _c("div", { staticClass: "modal-content" }, [
-                          _vm._m(8),
+                          _vm._m(5),
                           _vm._v(" "),
                           _c("div", { staticClass: "modal-body" }, [
                             _c(
@@ -46387,7 +47503,7 @@ var render = function() {
                                   1
                                 ),
                                 _vm._v(" "),
-                                _vm._m(9)
+                                _vm._m(6)
                               ]
                             )
                           ])
@@ -46397,6 +47513,19 @@ var render = function() {
                   ]
                 )
               ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "card-body tab-pane",
+                attrs: {
+                  id: "levelsOfCivil",
+                  "aria-labelledby": "levelsOfCivil-tab"
+                }
+              },
+              [_c("levels-of-civil")],
+              1
             )
           ])
         ])
@@ -46469,6 +47598,24 @@ var staticRenderFns = [
               },
               [_vm._v("Position")]
             )
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link",
+                attrs: {
+                  id: "levelsOfCivil-tab",
+                  "data-toggle": "tab",
+                  href: "#levelsOfCivil",
+                  role: "tab",
+                  "aria-controls": "levelsOfCivil",
+                  "aria-selected": "true"
+                }
+              },
+              [_vm._v("Levels of Civil")]
+            )
           ])
         ]
       )
@@ -46525,66 +47672,6 @@ var staticRenderFns = [
         "button",
         { staticClass: "btn btn-success", attrs: { type: "submit" } },
         [_vm._v("Update Subject")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("Employee Base")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Assigned To")]),
-        _vm._v(" "),
-        _c("th")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "h5",
-        { staticClass: "modal-title", attrs: { id: "exampleModalLongTitle" } },
-        [_vm._v("Edit Employee Base")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-secondary",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Close")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-success", attrs: { type: "submit" } },
-        [_vm._v("Update Employee Base")]
       )
     ])
   },
@@ -62397,6 +63484,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/EmployeeBaseComponent.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/EmployeeBaseComponent.vue ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _EmployeeBaseComponent_vue_vue_type_template_id_3f8f64c3___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EmployeeBaseComponent.vue?vue&type=template&id=3f8f64c3& */ "./resources/js/components/EmployeeBaseComponent.vue?vue&type=template&id=3f8f64c3&");
+/* harmony import */ var _EmployeeBaseComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EmployeeBaseComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/EmployeeBaseComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _EmployeeBaseComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EmployeeBaseComponent_vue_vue_type_template_id_3f8f64c3___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EmployeeBaseComponent_vue_vue_type_template_id_3f8f64c3___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/EmployeeBaseComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/EmployeeBaseComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/EmployeeBaseComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EmployeeBaseComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./EmployeeBaseComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EmployeeBaseComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EmployeeBaseComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/EmployeeBaseComponent.vue?vue&type=template&id=3f8f64c3&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/EmployeeBaseComponent.vue?vue&type=template&id=3f8f64c3& ***!
+  \******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EmployeeBaseComponent_vue_vue_type_template_id_3f8f64c3___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./EmployeeBaseComponent.vue?vue&type=template&id=3f8f64c3& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EmployeeBaseComponent.vue?vue&type=template&id=3f8f64c3&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EmployeeBaseComponent_vue_vue_type_template_id_3f8f64c3___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EmployeeBaseComponent_vue_vue_type_template_id_3f8f64c3___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/ExampleComponent.vue":
 /*!******************************************************!*\
   !*** ./resources/js/components/ExampleComponent.vue ***!
@@ -62461,6 +63617,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/LevelsOfCivilComponent.vue":
+/*!************************************************************!*\
+  !*** ./resources/js/components/LevelsOfCivilComponent.vue ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _LevelsOfCivilComponent_vue_vue_type_template_id_b2a8948a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LevelsOfCivilComponent.vue?vue&type=template&id=b2a8948a& */ "./resources/js/components/LevelsOfCivilComponent.vue?vue&type=template&id=b2a8948a&");
+/* harmony import */ var _LevelsOfCivilComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LevelsOfCivilComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/LevelsOfCivilComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _LevelsOfCivilComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _LevelsOfCivilComponent_vue_vue_type_template_id_b2a8948a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _LevelsOfCivilComponent_vue_vue_type_template_id_b2a8948a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/LevelsOfCivilComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/LevelsOfCivilComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/LevelsOfCivilComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LevelsOfCivilComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./LevelsOfCivilComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LevelsOfCivilComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LevelsOfCivilComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/LevelsOfCivilComponent.vue?vue&type=template&id=b2a8948a&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/LevelsOfCivilComponent.vue?vue&type=template&id=b2a8948a& ***!
+  \*******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LevelsOfCivilComponent_vue_vue_type_template_id_b2a8948a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./LevelsOfCivilComponent.vue?vue&type=template&id=b2a8948a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LevelsOfCivilComponent.vue?vue&type=template&id=b2a8948a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LevelsOfCivilComponent_vue_vue_type_template_id_b2a8948a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LevelsOfCivilComponent_vue_vue_type_template_id_b2a8948a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

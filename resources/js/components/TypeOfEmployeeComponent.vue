@@ -14,6 +14,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" id="position-tab" data-toggle="tab" href="#position" role="tab" aria-controls="position" aria-selected="true">Position</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="levelsOfCivil-tab" data-toggle="tab" href="#levelsOfCivil" role="tab" aria-controls="levelsOfCivil" aria-selected="true">Levels of Civil</a>
+                            </li>                            
                         </ul> 
                     </div>
                     <div class="tab-content"> 
@@ -86,88 +89,7 @@
                         </div>
                         <!------------------------------------- EMPLOYEE BASE --------------------------------------------------->
                         <div class="card-body tab-pane" id="employee-base" aria-labelledby="employee-base-tab">
-                            <form @submit.prevent="AddEmployeeBase()" action="" method="post">
-                                <div class="form-group">
-                                    <label for="name">Employee Base</label>
-                                    <input type="text" v-model="addEmpBaseForm.name" name="name" id="name" 
-                                    :class="{ 'is-invalid': addEmpBaseForm.errors.has('name') }" class="form-control">
-                                    <has-error :form="addEmpBaseForm" field="name"></has-error>
-                                </div>
-                                <div class="form-group">
-                                    <label for="emptype">Employee Type</label>
-                                    <select id="emptype" v-model="addEmpBaseForm.employeeType" class="form-control" :class="{ 'is-invalid': addEmpBaseForm.errors.has('employeeType') }">
-                                        <option v-for="employeeType in employeeTypes" :key="employeeType.id" :value="employeeType.id">{{employeeType.name}}</option>
-                                    </select>
-                                    <has-error :form="addEmpBaseForm" field="employeeType"></has-error>
-                                </div>
-                                <button class="btn btn-success float-right" type="submit">Add Employee Base</button>
-                            </form>
-
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Employee Base</th>
-                                        <th>Assigned To</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr v-for="employeeBase in employeeBases" :key="employeeBase.id">
-                                        <td>{{employeeBase.name}}</td>
-                                        <td>{{employeeBase.type_of_employee.name}}</td>
-                                        <td>
-                                            <a href="#" @click="editEmployeeBase(employeeBase)">
-                                                <i class="far fa-edit" style="color: green"></i>
-                                            </a>
-                                            /
-                                            <a href="#" @click="deleteEmployeeBase(employeeBase.id)">
-                                                <i class="far fa-trash-alt" style="color: red"></i>
-                                            </a>  
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                        <!-- Employee Base Modal -->
-                        <div class="modal fade" id="editEmpBaseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Edit Employee Base</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form @submit.prevent="updateEmployeeBase()" action="" method="post">
-                                    <div class="form-group">
-                                        <label for="name">Component Name</label>
-                                        <input type="text" v-model="editEmpBaseForm.name" class="form-control" name="name" 
-                                            :class="{ 'is-invalid': editEmpBaseForm.errors.has('name') }">
-                                            <has-error :form="editEmpBaseForm" field="name"></has-error>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="employeeType">Employee Type</label>
-                                        <select name="type_of_employee_id" v-model="editEmpBaseForm.type_of_employee_id" id="employeeType" class="form-control" 
-                                        :class="{ 'is-invalid': editEmpBaseForm.errors.has('type_of_employee_id') }">
-                                            <option v-for="employeeType in employeeTypes" :key="employeeType.id" :value="employeeType.id">
-                                                {{ employeeType.name }}
-                                            </option>
-                                        </select>
-                                        <has-error :form="editEmpBaseForm" field="type_of_employee_id"></has-error>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-success">Update Employee Base</button>
-                                    </div>
-
-                                </form>
-                            </div>
-
-                            </div>
-                        </div>
-                        </div>
-
+                            <employee-base v-bind:EmployeeTypeObject="employeeTypes"></employee-base>
                         </div>
                         <!------------------------------------- POSITION --------------------------------------------------->
                         <div class="card-body tab-pane" id="position" aria-labelledby="position-tab">
@@ -259,6 +181,10 @@
                         </div>
 
                         </div>
+
+                        <div class="card-body tab-pane" id="levelsOfCivil" aria-labelledby="levelsOfCivil-tab">
+                            <levels-of-civil></levels-of-civil>
+                        </div>
                     </div>  
                 </div>
             </div>
@@ -267,7 +193,13 @@
 </template>
 
 <script>
+    import LevelsOfCivil from './LevelsOfCivilComponent.vue'
+    import EmployeeBase from './EmployeeBaseComponent.vue'
     export default {
+        components: {
+            LevelsOfCivil,
+            EmployeeBase
+        },
         data() {
             return {
                 employeeTypes: {},
