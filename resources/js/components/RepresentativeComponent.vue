@@ -3,38 +3,34 @@
         <div class="row justify-content-center">
             <div class="col-md-8 mt-3">
                 <div class="card">
-                    <div class="card-header">Schools</div>
+                    <div class="card-header">Represent</div>
 
                     <div class="card-body">
-                        <form @submit.prevent="addSchool()" action="" method="post">
+                        <form @submit.prevent="addRepresent()" action="" method="post">
                             <div class="form-group">
-                                <label for="name">Add a School</label>
+                                <label for="name">Representing Name</label>
                                 <input v-model="form.name" type="text" class="form-control" 
-                                :class="{ 'is-invalid': form.errors.has('name') }" placeholder="School name">
+                                :class="{ 'is-invalid': form.errors.has('name') }">
                                 <has-error :form="form" field="name"></has-error>
                             </div>
-                            <button class="btn btn-success float-right" type="submit">Add School</button>
+                            <button class="btn btn-success float-right" type="submit">Add</button>
                         </form>
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>School Name</th>
+                                    <th>Representing Name</th>
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody v-if="schools.length < 1">
-                                <h3 class="text-center">No Schools Yet</h3> 
-
-                            </tbody>
-                            <tbody v-else>
-                                <tr v-for="school in schools" :key="school.id">
-                                    <td>{{ school.name }}</td>
+                            <tbody>
+                                <tr v-for="represent in represents" :key="represent.id">
+                                    <td>{{ represent.name }}</td>
                                     <td>
-                                        <a href="#" @click="editSchool(school)">
+                                        <a href="#" @click="editRepresent(represent)">
                                             <i class="far fa-edit" style="color: green"></i>
                                         </a>
                                         /
-                                        <a href="#" @click="deleteSchool(school.id)">
+                                        <a href="#" @click="deleteRepresent(represent.id)">
                                             <i class="far fa-trash-alt" style="color: red"></i>
                                         </a>         
                                     </td>
@@ -49,17 +45,17 @@
 
 
         <!-- Modal -->
-        <div class="modal fade" id="editSchoolModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="editRepresentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Edit School</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Edit Represent</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form @submit.prevent="updateSchool()" action="" method="post">
+                <form @submit.prevent="updateRepresent()" action="" method="post">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" v-model="editForm.name" class="form-control" name="name" 
@@ -69,7 +65,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success">Update School</button>
+                        <button type="submit" class="btn btn-success">Update Represent</button>
                     </div>
 
                 </form>
@@ -90,9 +86,8 @@
     export default {
         data() {
             return {
-                schools : {},
+                represents : {},
                 form: new Form({
-                    id: '',
                     name: '',
                 }),
                 editForm: new Form({
@@ -105,51 +100,51 @@
             console.log('Component mounted.')
         },
         methods: {
-            loadSchools() {
-                axios.get('api/schools')
+            loadRepresent() {
+                axios.get('api/representatives')
                     .then(({data}) => {
-                        (this.schools = data)
+                        (this.represents = data)
                     })
             },
-            addSchool() {
-                this.form.post('api/schools')
+            addRepresent() {
+                this.form.post('api/representatives')
                     .then(() => {
                         Toast.fire({
                         icon: 'success',
-                        title: 'School added successfully'
+                        title: 'Represent added successfully'
                         })
 
-                        Fire.$emit('reloadSchools');
+                        Fire.$emit('reloadRepresent');
 
                         this.form.reset();
                         this.form.clear();
                     })
             },
-            editSchool(school) {
+            editRepresent(represent) {
                 this.editForm.clear();
                 this.editForm.reset();
-                $('#editSchoolModal').modal('show');
-                this.editForm.fill(school);
+                $('#editRepresentModal').modal('show');
+                this.editForm.fill(represent);
             },
-            updateSchool() {
+            updateRepresent() {
                 this.$Progress.start();
-                this.editForm.patch('api/schools/' + this.editForm.id)
+                this.editForm.patch('api/representatives/' + this.editForm.id)
                     .then(() => {
-                        $('#editSchoolModal').modal('hide');
+                        $('#editRepresentModal').modal('hide');
 
                         Toast.fire({
                         icon: 'success',
-                        title: 'School updated successfully'
+                        title: 'Represent updated successfully'
                         });
 
                         this.$Progress.finish();
-                        Fire.$emit('reloadSchools');
+                        Fire.$emit('reloadRepresent');
                     })
                     .catch(() => {
                         this.$Progress.fail();
                     })
             },
-            deleteSchool(id) {
+            deleteRepresent(id) {
                 Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -160,7 +155,7 @@
                 confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
                     if (result.value) {
-                        this.form.delete('api/schools/' + id)
+                        this.form.delete('api/representatives/' + id)
                             .then(() => {
                                 Swal.fire(
                                 'Deleted!',
@@ -168,7 +163,7 @@
                                 'success'
                                 );
 
-                                Fire.$emit('reloadSchools');
+                                Fire.$emit('reloadRepresent');
                             })
                             .catch(() => {
                                 Swal.fire(
@@ -184,9 +179,9 @@
             }
         },
         created() {
-            this.loadSchools();
-            Fire.$on('reloadSchools', () => {
-                this.loadSchools();
+            this.loadRepresent();
+            Fire.$on('reloadRepresent', () => {
+                this.loadRepresent();
             })
         }
     }

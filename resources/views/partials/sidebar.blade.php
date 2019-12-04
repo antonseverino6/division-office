@@ -32,6 +32,14 @@
               </router-link>
             </li>
             <li class="nav-item">
+              <router-link to="/add-employee" class="nav-link" active-class="active" exact>
+                <i class="fas fa-user-plus"></i>
+                  <p>
+                  Add Employee
+                  </p>
+              </router-link>
+            </li> 
+            <li class="nav-item">
               <router-link to="/users" class="nav-link" active-class="active" exact>
                   <i class="nav-icon fas fa-users"></i>
                   <p>
@@ -49,9 +57,9 @@
                 </a>
                 <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <router-link to="/schools" class="nav-link" active-class="active" exact>
+                    <router-link to="/represents" class="nav-link" active-class="active" exact>
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Schools</p>
+                    <p>Representative of</p>
                     </router-link>
                 </li>
                 <li class="nav-item">

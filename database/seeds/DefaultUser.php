@@ -18,6 +18,7 @@ class DefaultUser extends Seeder
             'email' => 'test@test.com',
             'email_verified_at' => now(),
             'registered_by' => 1,
+            'representative_id' => 1,
             'password' => Hash::make('testuser'),
         ]);
     }

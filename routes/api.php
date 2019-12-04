@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('users','API\UserController');
-Route::resource('schools', 'API\SchoolsController');
+Route::resource('representatives', 'API\RepresentativesController');
 Route::resource('subjects', 'API\SubjectsController');
 Route::resource('areas', 'API\AreasController');
 Route::resource('components', 'API\ComponentsController');
@@ -28,4 +28,5 @@ Route::resource('positions', 'API\PositionsController');
 Route::patch('linkSubject/{position}', 'API\PositionsController@link_subject');
 Route::resource('levelsOfCivil', 'API\LevelsOfCivilsController');
 Route::resource('grade-levels', 'API\GradeLevelsController');
+Route::resource('employment-status', 'API\EmploymentStatusController');
 // Route::get('users', 'API\UserController');

@@ -48,7 +48,8 @@ window.Form = Form;
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
 
-
+import flatpickr from "flatpickr";
+window.flatpickr = flatpickr
 
 import Router from 'vue-router'
 
@@ -56,15 +57,16 @@ Vue.use(Router);
 
 import User from './components/UserComponent.vue';
 import Dashboard from './components/DashboardComponent.vue';
-import School from './components/SchoolComponent.vue';
-import Subject from './components/SubjectComponent.vue';
-import TypeOfEmployee from './components/TypeOfEmployeeComponent.vue';
-
+import Representative from './components/RepresentativeComponent.vue';
+import Subject from './components/Subject/SubjectComponent.vue';
+import TypeOfEmployee from './components/TypeOfEmployee/TypeOfEmployeeComponent.vue';
+import AddEmployee from './components/AddEmployeeComponent.vue';
 export const routes = [
     { path: '/users', component: User, name: 'User' },
     { path: '/dashboard', component: Dashboard, name: 'Dashboard' },
-    { path: '/schools', component: School, name: 'School' },
+    { path: '/represents', component: Representative, name: 'Representative' },
     { path: '/subjects', component: Subject, name: 'Subject' },
+    { path: '/add-employee', component: AddEmployee, name: 'AddEmployee' },
     { path: '/type-of-employee', component: TypeOfEmployee, name: 'TypeOfEmployee' },
 ];
 

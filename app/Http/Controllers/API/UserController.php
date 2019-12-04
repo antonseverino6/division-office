@@ -23,7 +23,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::all();
+        return User::with('representative')->get();
     }
 
     /**
@@ -49,14 +49,16 @@ class UserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'admin' => 'required',
             'password' => ['required', 'string', 'min:8','confirmed'],
+            'representative_id' => 'required',
             'password_confirmation' => 'required',
         ]);
 
         $user = User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'admin' => $request['admin'],
+            'name' => $request->name,
+            'email' => $request->email,
+            'admin' => $request->admin,
             'registered_by' => auth('api')->user()->id,
+            'representative_id' => $request->representative_id,
             'password' => Hash::make($request['password']),
         ]);
         
@@ -97,9 +99,33 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $request->id ],
+            'admin' => 'required',
+            'password' => ['sometimes', 'string', 'min:8','confirmed'],
+            'representative_id' => 'required',
+            'password_confirmation' => 'sometimes',
+        ]);
+        // $request->except($request->password_confirmation);
+        // $user->update([
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'admin' => $request->admin,
+        //     'registered_by' => auth('api')->user()->id,
+        //     'representative_id' => $request->representative_id,
+        // ]);
+
+            $request->merge(['registered_by' => auth('api')->user()->id]);
+
+        if (!empty($request->password)) {
+            $request->merge(['password' => Hash::make($request->password)]);
+        }
+        
+        $user->update($request->all());
+
     }
 
     /**

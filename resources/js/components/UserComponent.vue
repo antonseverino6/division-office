@@ -18,6 +18,7 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Email</th>
+                                    <th>Represents</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -25,7 +26,12 @@
                                 <tr v-for="user in users" :key="user.id">
                                     <td>{{ user.name }}</td>
                                     <td>{{ user.email }}</td>
+                                    <td>{{ user.representative.name }}</td>
                                     <td> 
+                                        <a href="#" @click="editUser(user)">
+                                            <i class="far fa-edit" style="color: green"></i>
+                                        </a>
+                                        /
                                         <a href="#" @click="deleteUser(user.id)">
                                             <i class="far fa-trash-alt" style="color: red"></i>
                                         </a>
@@ -43,7 +49,7 @@
 
 
         <!-- Modal -->
-        <div class="modal fade" id="addNewUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="UserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
             <div class="modal-header">
@@ -65,6 +71,14 @@
                         <input type="email" v-model="form.email" class="form-control" name="email" id="email"
                               :class="{ 'is-invalid': form.errors.has('email') }" placeholder="Email">
                         <has-error :form="form" field="email"></has-error>
+                    </div>
+                    <div class="form-group">
+                        <label for="representative">Representing</label>
+                        <select v-model="form.representative_id" class="form-control" name="representative_id" id="representative"
+                              :class="{ 'is-invalid': form.errors.has('representative_id') }">
+                            <option v-for="represent in representatives" :key="represent.id" :value="represent.id">{{represent.name}}</option>
+                        </select>
+                        <has-error :form="form" field="representative_id"></has-error>
                     </div>
                     <div class="form-group">
                         <div>
@@ -98,7 +112,8 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success">Create User</button>
+                        <button v-show="!editMode" type="submit" class="btn btn-success">Create User</button>
+                        <button v-show="editMode" type="submit" class="btn btn-success">Edit User</button>
                     </div>
 
                 </form>
@@ -120,12 +135,15 @@
                 editMode: false,
                 users : {},
                 form: new Form({
+                    id: '',
                     name: '',
                     email: '',
                     admin: '0',
                     password: '',
                     password_confirmation: '',
+                    representative_id: '',
                 }),
+                representatives: {},
             }
         },
         mounted() {
@@ -140,20 +158,44 @@
                 this.editMode = false;
                 this.form.clear();
                 this.form.reset();
-                $('#addNewUserModal').modal('show');
+                $('#UserModal').modal('show');
             },
             createUser() {
                 this.$Progress.start();
                 this.form.post('api/users')
                     .then(() => {
                         Fire.$emit('reloadUsers');
-                        $('#addNewUserModal').modal('hide');
+                        $('#UserModal').modal('hide');
 
                         Toast.fire({
                         icon: 'success',
                         title: 'User created successfully'
                         })
 
+                        this.$Progress.finish();
+                    })
+                    .catch(() => {
+                        this.$Progress.fail();
+                    })
+            },
+            editUser(user) {
+                this.form.clear();
+                this.form.reset();
+                this.editMode = true;
+                $('#UserModal').modal('show');
+                this.form.fill(user)
+            },
+            updateUser() {
+                this.$Progress.start();
+                this.form.patch('api/users/' + this.form.id)
+                    .then(() => {
+                        Fire.$emit('reloadUsers');
+
+                        Toast.fire({
+                        icon: 'success',
+                        title: 'User updated successfully'
+                        })
+                        $('#UserModal').modal('hide')
                         this.$Progress.finish();
                     })
                     .catch(() => {
@@ -191,10 +233,15 @@
                             })
                     }
                 })
+            },
+            loadRepresentatives() {
+                axios.get('api/representatives')
+                     .then(({data}) => (this.representatives = data))
             }
         },
         created() {
             this.loadUsers();
+            this.loadRepresentatives();
             Fire.$on('reloadUsers', () => {
                 this.loadUsers();
             });
