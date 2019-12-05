@@ -25,14 +25,17 @@
                     <div class="tab-content"> 
                         <!------------------------------------- EMPLOYEE TYPE --------------------------------------------------->
                         <div class="card-body tab-pane active" id="employee-type" aria-labelledby="employee-type-tab">
-                            <form @submit.prevent="AddEmployeeType()" action="" method="post">
+                            <form class="mb-3" @submit.prevent="AddEmployeeType()" action="" method="post">
                                 <div class="form-group">
                                     <label for="name">Employee Type</label>
                                     <input type="text" v-model="addEmpTypeForm.name" name="name" id="name" 
                                     :class="{ 'is-invalid': addEmpTypeForm.errors.has('name') }" class="form-control">
                                     <has-error :form="addEmpTypeForm" field="name"></has-error>
                                 </div>
-                                <button class="btn btn-success float-right" type="submit">Add Employee Type</button>
+
+                                <div class="d-flex flex-row-reverse">
+                                <button class="btn btn-success" type="submit">Add Employee Type</button>
+                                </div>
                             </form>
 
                             <table class="table">

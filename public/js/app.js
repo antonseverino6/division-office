@@ -1930,20 +1930,99 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      default_img: '/img/default_userprofile.png'
+      default_img: '/img/default_userprofile.png',
+      empStatuses: {}
     };
   },
   methods: {
     pickFile: function pickFile() {
       this.$refs.file.click(); // document.getElementById('file').click();
+    },
+    loadEmpStatus: function loadEmpStatus() {
+      var _this = this;
+
+      axios.get('api/employment-status').then(function (_ref) {
+        var data = _ref.data;
+        _this.empStatuses = data;
+      });
     }
   },
   mounted: function mounted() {
     console.log('Component mounted.');
     flatpickr('#datepicker');
+  },
+  created: function created() {
+    this.loadEmpStatus();
   }
 });
 
@@ -2108,16 +2187,66 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       represents: {},
       form: new Form({
-        name: ''
+        name: '',
+        divisionCode: '',
+        schoolId: '',
+        regionOrgCode: ''
       }),
       editForm: new Form({
         id: '',
-        name: ''
+        name: '',
+        division_code: '',
+        school_id: '',
+        region_org_code: ''
       })
     };
   },
@@ -3158,6 +3287,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['EmployeeTypeObject'],
   data: function data() {
@@ -3349,6 +3481,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3451,6 +3585,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -3713,6 +3850,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['EmployeeTypeObject'],
   data: function data() {
@@ -3845,6 +3985,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _EmployeeBaseComponent_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EmployeeBaseComponent.vue */ "./resources/js/components/TypeOfEmployee/EmployeeBaseComponent.vue");
 /* harmony import */ var _PositionComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PositionComponent.vue */ "./resources/js/components/TypeOfEmployee/PositionComponent.vue");
 /* harmony import */ var _EmploymentStatusComponent_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./EmploymentStatusComponent.vue */ "./resources/js/components/TypeOfEmployee/EmploymentStatusComponent.vue");
+//
+//
+//
 //
 //
 //
@@ -47818,50 +47961,99 @@ var render = function() {
               _vm._m(1)
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-12" }, [
-                _c("h4", [_vm._v("Official Details")]),
+            _c("div", { staticClass: "row mb-5" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-3 border-right" }, [
+                _vm._m(3),
                 _vm._v(" "),
-                _c("hr", { staticClass: "mt-0" }),
+                _vm._m(4),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-md-4" }, [
-                  _vm._m(2),
+                _c("div", { staticClass: "form-group-sm" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "mr-2",
+                      staticStyle: { display: "block" },
+                      attrs: { for: "gender" }
+                    },
+                    [_vm._v("Gender")]
+                  ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "form-group-sm" }, [
-                    _c(
-                      "label",
-                      { staticClass: "mr-2", attrs: { for: "gender" } },
-                      [_vm._v("Gender")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-check-inline" }, [
-                      _c("label", { staticClass: "form-check-label" }, [
-                        _c("input", {
-                          staticClass: "form-check-input",
-                          attrs: { type: "radio", name: "gender" },
-                          domProps: { value: _vm.male }
-                        }),
-                        _vm._v(" "),
-                        _c("i", { staticClass: "fas fa-male" }),
-                        _vm._v(" Male\n                                    ")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-check-inline" }, [
-                      _c("label", { staticClass: "form-check-label" }, [
-                        _c("input", {
-                          staticClass: "form-check-input",
-                          attrs: { type: "radio", name: "gender" },
-                          domProps: { value: _vm.female }
-                        }),
-                        _vm._v(" "),
-                        _c("i", { staticClass: "fas fa-female" }),
-                        _vm._v(" Female\n                                    ")
-                      ])
+                  _c("div", { staticClass: "form-check-inline ml-3" }, [
+                    _c("label", { staticClass: "form-check-label" }, [
+                      _c("input", {
+                        staticClass: "form-check-input",
+                        attrs: { type: "radio", name: "gender" },
+                        domProps: { value: _vm.male }
+                      }),
+                      _vm._v(" "),
+                      _c("i", { staticClass: "fas fa-male" }),
+                      _vm._v(" Male\n                                    ")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-check-inline" }, [
+                    _c("label", { staticClass: "form-check-label" }, [
+                      _c("input", {
+                        staticClass: "form-check-input",
+                        attrs: { type: "radio", name: "gender" },
+                        domProps: { value: _vm.female }
+                      }),
+                      _vm._v(" "),
+                      _c("i", { staticClass: "fas fa-female" }),
+                      _vm._v(" Female\n                                    ")
                     ])
                   ])
                 ])
-              ])
+              ]),
+              _vm._v(" "),
+              _vm._m(5),
+              _vm._v(" "),
+              _vm._m(6)
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row mt-3" }, [
+              _c("div", { staticClass: "col-md-4 border-right" }, [
+                _vm._m(7),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "emp_status" } }, [
+                    _vm._v("Employment Status")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      staticClass: "form-control form-control-sm",
+                      attrs: { name: "emp_status", id: "emp_status" }
+                    },
+                    [
+                      _c("option", { attrs: { value: "" } }, [
+                        _vm._v("-- Select --")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.empStatuses, function(empStatus) {
+                        return _c(
+                          "option",
+                          {
+                            key: empStatus.id,
+                            domProps: { value: empStatus.id }
+                          },
+                          [_vm._v(_vm._s(empStatus.name))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(8)
+              ]),
+              _vm._v(" "),
+              _vm._m(9),
+              _vm._v(" "),
+              _vm._m(10)
             ])
           ])
         ])
@@ -47931,6 +48123,16 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("h4", [_vm._v("Official Details")]),
+      _vm._v(" "),
+      _c("hr", { staticClass: "mt-0" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group-sm mb-3" }, [
       _c("label", { attrs: { for: "birth_date" } }, [_vm._v("Birth Date")]),
       _vm._v(" "),
@@ -47938,6 +48140,164 @@ var staticRenderFns = [
         staticClass: "form-control form-control-sm",
         attrs: { type: "text", id: "datepicker", name: "birth_date" }
       })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group-sm mb-3" }, [
+      _c("label", { attrs: { for: "birth_place" } }, [_vm._v("Birth Place")]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control form-control-sm",
+        attrs: { type: "text", id: "birth_place", name: "birth_place" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-5 border-right" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "civil_status" } }, [
+          _vm._v("Civil Status")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control form-control-sm",
+          attrs: { type: "text", name: "civil_status", id: "civil_status" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "per_address" } }, [
+          _vm._v("Permanent Address")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control form-control-sm",
+          attrs: { type: "text", name: "per_address", id: "per_address" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 border-right" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "contact_no" } }, [
+          _vm._v("Contact Number")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control form-control-sm",
+          attrs: { type: "text", name: "contact_no", id: "contact_no" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "email" } }, [_vm._v("Email Address")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control form-control-sm",
+          attrs: { type: "email", name: "email", id: "email" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "role_type" } }, [_vm._v("Role Type")]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control form-control-sm",
+        attrs: { type: "text", name: "role_type", id: "role_type" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "job_code" } }, [_vm._v("Job Title Code")]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control form-control-sm",
+        attrs: { type: "text", name: "job_code", id: "job_code" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 border-right" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "date_join" } }, [
+          _vm._v("Date of Joining")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control form-control-sm",
+          attrs: { type: "text", id: "datepicker", name: "date_join" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "date_appoint" } }, [
+          _vm._v("Date of Original Appointment")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control form-control-sm",
+          attrs: { type: "text", id: "datepicker", name: "date_appoint" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "work_shift" } }, [_vm._v("Work Shift")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control form-control-sm",
+          attrs: { type: "text", name: "work_shift", id: "work_shift" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "biometric" } }, [
+          _vm._v("Biometric ID/RFID")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control form-control-sm",
+          attrs: { type: "text", name: "biometric", id: "biometric" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "item_num" } }, [
+          _vm._v("Complete Item No.")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control form-control-sm",
+          attrs: { type: "text", name: "item_num", id: "item_num" }
+        })
+      ])
     ])
   }
 ]
@@ -48058,7 +48418,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-8 mt-3" }, [
+      _c("div", { staticClass: "col-md-9 mt-3" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-header" }, [_vm._v("Represent")]),
           _vm._v(" "),
@@ -48066,6 +48426,7 @@ var render = function() {
             _c(
               "form",
               {
+                staticClass: "mb-3",
                 attrs: { action: "", method: "post" },
                 on: {
                   submit: function($event) {
@@ -48092,7 +48453,7 @@ var render = function() {
                           expression: "form.name"
                         }
                       ],
-                      staticClass: "form-control",
+                      staticClass: "form-control form-control-sm",
                       class: { "is-invalid": _vm.form.errors.has("name") },
                       attrs: { type: "text" },
                       domProps: { value: _vm.form.name },
@@ -48114,24 +48475,144 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-success float-right",
-                    attrs: { type: "submit" }
-                  },
-                  [_vm._v("Add")]
-                )
+                  "div",
+                  { staticClass: "form-group" },
+                  [
+                    _c("label", { attrs: { for: "name" } }, [
+                      _vm._v("School ID")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.schoolId,
+                          expression: "form.schoolId"
+                        }
+                      ],
+                      staticClass: "form-control form-control-sm",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.form.schoolId },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "schoolId", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("has-error", {
+                      attrs: { form: _vm.form, field: "schoolId" }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-sm-6" },
+                    [
+                      _c("label", { attrs: { for: "" } }, [
+                        _vm._v("Division Code")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.divisionCode,
+                            expression: "form.divisionCode"
+                          }
+                        ],
+                        staticClass: "form-control form-control-sm",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.form.divisionCode },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.form,
+                              "divisionCode",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form, field: "divisionCode" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-sm-6" },
+                    [
+                      _c("label", { attrs: { for: "" } }, [
+                        _vm._v("Region Org Code")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.regionOrgCode,
+                            expression: "form.regionOrgCode"
+                          }
+                        ],
+                        staticClass: "form-control form-control-sm",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.form.regionOrgCode },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.form,
+                              "regionOrgCode",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form, field: "regionOrgCode" }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(0)
               ]
             ),
             _vm._v(" "),
             _c("table", { staticClass: "table" }, [
-              _vm._m(0),
+              _vm._m(1),
               _vm._v(" "),
               _c(
                 "tbody",
                 _vm._l(_vm.represents, function(represent) {
                   return _c("tr", { key: represent.id }, [
                     _c("td", [_vm._v(_vm._s(represent.name))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(represent.school_id))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(represent.division_code))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(represent.region_org_code))]),
                     _vm._v(" "),
                     _c("td", [
                       _c(
@@ -48203,7 +48684,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(1),
+              _vm._m(2),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c(
@@ -48266,7 +48747,138 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _vm._m(2)
+                    _c(
+                      "div",
+                      { staticClass: "form-group" },
+                      [
+                        _c("label", { attrs: { for: "name" } }, [
+                          _vm._v("School ID")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.editForm.school_id,
+                              expression: "editForm.school_id"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.editForm.school_id },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.editForm,
+                                "school_id",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("has-error", {
+                          attrs: { form: _vm.editForm, field: "school_id" }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "form-group col-sm-6" },
+                        [
+                          _c("label", { attrs: { for: "" } }, [
+                            _vm._v("Division Code")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.editForm.division_code,
+                                expression: "editForm.division_code"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: { type: "text" },
+                            domProps: { value: _vm.editForm.division_code },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.editForm,
+                                  "division_code",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("has-error", {
+                            attrs: {
+                              form: _vm.editForm,
+                              field: "division_code"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "form-group col-sm-6" },
+                        [
+                          _c("label", { attrs: { for: "" } }, [
+                            _vm._v("Region Org Code")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.editForm.region_org_code,
+                                expression: "editForm.region_org_code"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: { type: "text" },
+                            domProps: { value: _vm.editForm.region_org_code },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.editForm,
+                                  "region_org_code",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("has-error", {
+                            attrs: {
+                              form: _vm.editForm,
+                              field: "region_org_code"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(3)
                   ]
                 )
               ])
@@ -48282,8 +48894,30 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "d-flex flex-row-reverse" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-success", attrs: { type: "submit" } },
+        [_vm._v("Add Represent")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("thead", [
-      _c("tr", [_c("th", [_vm._v("Representing Name")]), _vm._v(" "), _c("th")])
+      _c("tr", [
+        _c("th", [_vm._v("Representing Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("School ID")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Division Code")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Region Org Code")]),
+        _vm._v(" "),
+        _c("th")
+      ])
     ])
   },
   function() {
@@ -49961,6 +50595,7 @@ var render = function() {
     _c(
       "form",
       {
+        staticClass: "mb-3",
         attrs: { action: "", method: "post" },
         on: {
           submit: function($event) {
@@ -50068,19 +50703,12 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-success float-right",
-            attrs: { type: "submit" }
-          },
-          [_vm._v("Add Employee Base")]
-        )
+        _vm._m(0)
       ]
     ),
     _vm._v(" "),
     _c("table", { staticClass: "table" }, [
-      _vm._m(0),
+      _vm._m(1),
       _vm._v(" "),
       _c(
         "tbody",
@@ -50154,7 +50782,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(1),
+              _vm._m(2),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c(
@@ -50292,7 +50920,7 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _vm._m(2)
+                    _vm._m(3)
                   ]
                 )
               ])
@@ -50304,6 +50932,18 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "d-flex flex-row-reverse" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-success", attrs: { type: "submit" } },
+        [_vm._v("Add Employee Base")]
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -50390,6 +51030,7 @@ var render = function() {
     _c(
       "form",
       {
+        staticClass: "mb-3",
         attrs: { action: "", method: "post" },
         on: {
           submit: function($event) {
@@ -50435,19 +51076,12 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-success float-right",
-            attrs: { type: "submit" }
-          },
-          [_vm._v("Add Employment Status")]
-        )
+        _vm._m(0)
       ]
     ),
     _vm._v(" "),
     _c("table", { staticClass: "table table-hover" }, [
-      _vm._m(0),
+      _vm._m(1),
       _vm._v(" "),
       _c(
         "tbody",
@@ -50519,7 +51153,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(1),
+              _vm._m(2),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c(
@@ -50578,7 +51212,7 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _vm._m(2)
+                    _vm._m(3)
                   ]
                 )
               ])
@@ -50590,6 +51224,18 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "d-flex flex-row-reverse" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-success", attrs: { type: "submit" } },
+        [_vm._v("Add Employment Status")]
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -50670,6 +51316,7 @@ var render = function() {
     _c(
       "form",
       {
+        staticClass: "mb-3",
         attrs: { action: "", method: "post" },
         on: {
           submit: function($event) {
@@ -50717,19 +51364,12 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-success float-right",
-            attrs: { type: "submit" }
-          },
-          [_vm._v("Add Level")]
-        )
+        _vm._m(0)
       ]
     ),
     _vm._v(" "),
     _c("table", { staticClass: "table table-hover" }, [
-      _vm._m(0),
+      _vm._m(1),
       _vm._v(" "),
       _c(
         "tbody",
@@ -50801,7 +51441,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(1),
+              _vm._m(2),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c(
@@ -50860,7 +51500,7 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _vm._m(2)
+                    _vm._m(3)
                   ]
                 )
               ])
@@ -50872,6 +51512,18 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "d-flex flex-row-reverse" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-success", attrs: { type: "submit" } },
+        [_vm._v("Add Level")]
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -50952,6 +51604,7 @@ var render = function() {
     _c(
       "form",
       {
+        staticClass: "mb-3",
         attrs: { action: "", method: "post" },
         on: {
           submit: function($event) {
@@ -51065,19 +51718,12 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-success float-right",
-            attrs: { type: "submit" }
-          },
-          [_vm._v("Add Position")]
-        )
+        _vm._m(0)
       ]
     ),
     _vm._v(" "),
     _c("table", { staticClass: "table" }, [
-      _vm._m(0),
+      _vm._m(1),
       _vm._v(" "),
       _c(
         "tbody",
@@ -51173,7 +51819,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(1),
+              _vm._m(2),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c(
@@ -51313,7 +51959,7 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _vm._m(2)
+                    _vm._m(3)
                   ]
                 )
               ])
@@ -51325,6 +51971,18 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "d-flex flex-row-reverse" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-success", attrs: { type: "submit" } },
+        [_vm._v("Add Position")]
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -51429,6 +52087,7 @@ var render = function() {
                 _c(
                   "form",
                   {
+                    staticClass: "mb-3",
                     attrs: { action: "", method: "post" },
                     on: {
                       submit: function($event) {
@@ -51482,19 +52141,12 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-success float-right",
-                        attrs: { type: "submit" }
-                      },
-                      [_vm._v("Add Employee Type")]
-                    )
+                    _vm._m(1)
                   ]
                 ),
                 _vm._v(" "),
                 _c("table", { staticClass: "table" }, [
-                  _vm._m(1),
+                  _vm._m(2),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -51568,7 +52220,7 @@ var render = function() {
                       },
                       [
                         _c("div", { staticClass: "modal-content" }, [
-                          _vm._m(2),
+                          _vm._m(3),
                           _vm._v(" "),
                           _c("div", { staticClass: "modal-body" }, [
                             _c(
@@ -51634,7 +52286,7 @@ var render = function() {
                                   1
                                 ),
                                 _vm._v(" "),
-                                _vm._m(3)
+                                _vm._m(4)
                               ]
                             )
                           ])
@@ -51811,6 +52463,18 @@ var staticRenderFns = [
             )
           ])
         ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "d-flex flex-row-reverse" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-success", attrs: { type: "submit" } },
+        [_vm._v("Add Employee Type")]
       )
     ])
   },
@@ -52016,7 +52680,7 @@ var render = function() {
                   [
                     _c(
                       "div",
-                      { staticClass: "form-group" },
+                      { staticClass: "form-group-sm" },
                       [
                         _c("label", { attrs: { for: "name" } }, [
                           _vm._v("Name")
@@ -52101,7 +52765,7 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "div",
-                      { staticClass: "form-group" },
+                      { staticClass: "form-group-sm" },
                       [
                         _c("label", { attrs: { for: "representative" } }, [
                           _vm._v("Representing")
@@ -52168,7 +52832,7 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "form-group-sm" }, [
                       _vm._m(2),
                       _vm._v("\n                      \n                    "),
                       _c("div", { staticClass: "form-check-inline" }, [
@@ -52238,7 +52902,7 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "div",
-                      { staticClass: "form-group" },
+                      { staticClass: "form-group-sm" },
                       [
                         _c("label", { attrs: { for: "password" } }, [
                           _vm._v("Password")
@@ -52287,7 +52951,7 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "div",
-                      { staticClass: "form-group" },
+                      { staticClass: "form-group-sm" },
                       [
                         _c("label", { attrs: { for: "password-confirm" } }, [
                           _vm._v("Confirm Password")

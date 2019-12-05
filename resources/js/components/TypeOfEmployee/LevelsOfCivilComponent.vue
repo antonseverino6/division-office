@@ -1,13 +1,16 @@
 <template>
     <div>
-        <form @submit.prevent="addLevelOfCivil()" action="" method="post">
+        <form class="mb-3" @submit.prevent="addLevelOfCivil()" action="" method="post">
             <div class="form-group">
                 <label for="level-of-civil">Levels Of Civil Service Elegibility</label>
                 <input v-model="addCivilForm.name" type="text" id="level-of-civil" 
                     :class="{ 'is-invalid': addCivilForm.errors.has('name') }" class="form-control">
                     <has-error :form="addCivilForm" field="name"></has-error>
             </div>
-            <button class="btn btn-success float-right" type="submit">Add Level</button>
+            <div class="d-flex flex-row-reverse">
+                <button class="btn btn-success" type="submit">Add Level</button>
+            </div>
+            
         </form>
 
         <table class="table table-hover">

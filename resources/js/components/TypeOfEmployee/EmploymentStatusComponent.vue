@@ -1,13 +1,15 @@
 <template>
     <div>
-        <form @submit.prevent="addEmploymentStatus()" action="" method="post">
+        <form class="mb-3" @submit.prevent="addEmploymentStatus()" action="" method="post">
             <div class="form-group">
                 <label for="level-of-civil">Employment Status</label>
                 <input v-model="form.name" type="text" id="level-of-civil" 
                     :class="{ 'is-invalid': form.errors.has('name') }" class="form-control">
                     <has-error :form="form" field="name"></has-error>
             </div>
-            <button class="btn btn-success float-right" type="submit">Add Employment Status</button>
+            <div class="d-flex flex-row-reverse">
+            <button class="btn btn-success" type="submit">Add Employment Status</button>
+            </div>
         </form>
 
         <table class="table table-hover">

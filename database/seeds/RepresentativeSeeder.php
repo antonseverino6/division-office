@@ -14,6 +14,9 @@ class RepresentativeSeeder extends Seeder
     {
         Representative::create([
             'name' => 'SDO Rizal',
+            'school_id' => '',
+            'division_code' => '',
+            'region_org_code' => '',
         ]);
     }
 }

@@ -60,7 +60,7 @@
             </div>
             <div class="modal-body">
                 <form @submit.prevent="editMode ? updateUser() : createUser()" action="" method="post">
-                    <div class="form-group">
+                    <div class="form-group-sm">
                         <label for="name">Name</label>
                         <input type="text" v-model="form.name" class="form-control" name="name" 
                             :class="{ 'is-invalid': form.errors.has('name') }" placeholder="Name">
@@ -72,7 +72,7 @@
                               :class="{ 'is-invalid': form.errors.has('email') }" placeholder="Email">
                         <has-error :form="form" field="email"></has-error>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group-sm">
                         <label for="representative">Representing</label>
                         <select v-model="form.representative_id" class="form-control" name="representative_id" id="representative"
                               :class="{ 'is-invalid': form.errors.has('representative_id') }">
@@ -80,7 +80,7 @@
                         </select>
                         <has-error :form="form" field="representative_id"></has-error>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group-sm">
                         <div>
                             <label for="">Role</label>
                         </div>
@@ -97,13 +97,13 @@
                         <has-error :form="form" field="admin"></has-error>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group-sm">
                         <label for="password">Password</label>
                         <input type="password" v-model="form.password" class="form-control" name="password" id="password"
                             :class="{ 'is-invalid': form.errors.has('password') }" placeholder="Password">
                         <has-error :form="form" field="password"></has-error>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group-sm">
                         <label for="password-confirm">Confirm Password</label>
                         <input id="password-confirm" type="password" v-model="form.password_confirmation" class="form-control" name="password_confirmation" 
                             :class="{ 'is-invalid': form.errors.has('password_confirmation') }"    placeholder="Confirm Password">

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form @submit.prevent="AddEmployeeBase()" action="" method="post">
+        <form class="mb-3" @submit.prevent="AddEmployeeBase()" action="" method="post">
             <div class="form-group">
                 <label for="name">Employee Base</label>
                 <input type="text" v-model="addEmpBaseForm.name" name="name" id="name" 
@@ -14,7 +14,10 @@
                 </select>
                 <has-error :form="addEmpBaseForm" field="employeeType"></has-error>
             </div>
-            <button class="btn btn-success float-right" type="submit">Add Employee Base</button>
+
+            <div class="d-flex flex-row-reverse">
+            <button class="btn btn-success" type="submit">Add Employee Base</button>
+            </div>
         </form>
 
         <table class="table">

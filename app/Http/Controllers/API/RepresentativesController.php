@@ -41,7 +41,10 @@ class RepresentativesController extends Controller
         ]);
             
         return Representative::create([
-            'name' => $request['name'],
+            'name' => $request->name,
+            'division_code' => $request->divisionCode,
+            'school_id' => $request->schoolId,
+            'region_org_code' => $request->regionOrgCode,
         ]);
     }
 
@@ -82,6 +85,9 @@ class RepresentativesController extends Controller
 
         $representative->update([
             'name' => $request->name,
+            'division_code' => $request->division_code,
+            'school_id' => $request->school_id,
+            'region_org_code' => $request->region_org_code,
         ]);
 
         return ['message', 'successfully updated'];
