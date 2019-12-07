@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form @submit.prevent="addArea()" action="" method="post">
+        <form class="mb-3" @submit.prevent="addArea()" action="" method="post">
             <div class="form-group">
                 <label for="name">Area</label>
                 <input type="text" v-model="addAreaForm.name" class="form-control" 
@@ -17,7 +17,10 @@
                 </select>
                 <has-error :form="addAreaForm" field="subject"></has-error> 
             </div>
+
+            <div class="d-flex flex-row-reverse">
             <button type="submit" class="btn btn-success float-right">Add Area</button>
+            </div>
         </form>
 
         <table class="table table-hover">

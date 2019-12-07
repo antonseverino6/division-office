@@ -29,7 +29,9 @@
                                      :class="{ 'is-invalid': addSubjectForm.errors.has('name') }" id="subject" placeholder="Subject Name">
                                     <has-error :form="addSubjectForm" field="name"></has-error>
                                 </div>
-                                <button type="submit" class="btn btn-success float-right">Add Subject</button>
+                                <div class="d-flex flex-row-reverse">
+                                    <button type="submit" class="btn btn-success float-right">Add Subject</button>
+                                </div>
                             </form>
 
                             <table class="table table-hover">

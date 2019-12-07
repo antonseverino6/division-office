@@ -1997,6 +1997,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2435,6 +2461,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['Subjects'],
   data: function data() {
@@ -2559,6 +2588,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -2846,6 +2877,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2961,6 +2995,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _GradeLevelComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./GradeLevelComponent.vue */ "./resources/js/components/Subject/GradeLevelComponent.vue");
 /* harmony import */ var _ComponentsComponent_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ComponentsComponent.vue */ "./resources/js/components/Subject/ComponentsComponent.vue");
 /* harmony import */ var _AreasComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AreasComponent.vue */ "./resources/js/components/Subject/AreasComponent.vue");
+//
+//
 //
 //
 //
@@ -47930,130 +47966,98 @@ var render = function() {
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-header" }, [_vm._v("Add Employee")]),
           _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _c("div", { staticClass: "row mb-5" }, [
-              _c("div", { staticClass: "col-md-4 text-right" }, [
-                _c("input", {
-                  ref: "file",
-                  staticStyle: { display: "none" },
-                  attrs: {
-                    type: "file",
-                    accept: "image/jpeg,image/jpg,image/png",
-                    id: "file"
-                  }
-                }),
-                _vm._v(" "),
-                _c("img", {
-                  staticClass: "mr-5",
-                  staticStyle: { border: "1px solid #000", cursor: "pointer" },
-                  attrs: {
-                    src: _vm.default_img,
-                    width: "200",
-                    height: "200",
-                    alt: ""
-                  },
-                  on: { click: _vm.pickFile }
-                })
-              ]),
+          _c("form", { attrs: { action: "", method: "post" } }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "row align-items-center justify-content-center mb-5"
+                },
+                [
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      ref: "file",
+                      staticStyle: { display: "none" },
+                      attrs: {
+                        type: "file",
+                        accept: "image/jpeg,image/jpg,image/png",
+                        id: "file"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("img", {
+                      staticClass: "mr-5",
+                      staticStyle: {
+                        border: "1px solid #000",
+                        cursor: "pointer"
+                      },
+                      attrs: {
+                        src: _vm.default_img,
+                        width: "200",
+                        height: "200",
+                        alt: ""
+                      },
+                      on: { click: _vm.pickFile }
+                    })
+                  ])
+                ]
+              ),
               _vm._v(" "),
               _vm._m(0),
               _vm._v(" "),
-              _vm._m(1)
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row mb-5" }, [
-              _vm._m(2),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-3 border-right" }, [
-                _vm._m(3),
+              _c("div", { staticClass: "row mb-1" }, [
+                _vm._m(1),
                 _vm._v(" "),
-                _vm._m(4),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group-sm" }, [
-                  _c(
-                    "label",
-                    {
-                      staticClass: "mr-2",
-                      staticStyle: { display: "block" },
-                      attrs: { for: "gender" }
-                    },
-                    [_vm._v("Gender")]
-                  ),
+                _c("div", { staticClass: "col-md-6" }, [
+                  _vm._m(2),
                   _vm._v(" "),
-                  _c("div", { staticClass: "form-check-inline ml-3" }, [
-                    _c("label", { staticClass: "form-check-label" }, [
-                      _c("input", {
-                        staticClass: "form-check-input",
-                        attrs: { type: "radio", name: "gender" },
-                        domProps: { value: _vm.male }
-                      }),
-                      _vm._v(" "),
-                      _c("i", { staticClass: "fas fa-male" }),
-                      _vm._v(" Male\n                                    ")
-                    ])
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "emp_status" } }, [
+                      _vm._v("Employment Status")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        staticClass: "form-control form-control-sm",
+                        attrs: { name: "emp_status", id: "emp_status" }
+                      },
+                      [
+                        _c("option", { attrs: { value: "" } }, [
+                          _vm._v("-- Select --")
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.empStatuses, function(empStatus) {
+                          return _c(
+                            "option",
+                            {
+                              key: empStatus.id,
+                              domProps: { value: empStatus.id }
+                            },
+                            [_vm._v(_vm._s(empStatus.name))]
+                          )
+                        })
+                      ],
+                      2
+                    )
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "form-check-inline" }, [
-                    _c("label", { staticClass: "form-check-label" }, [
-                      _c("input", {
-                        staticClass: "form-check-input",
-                        attrs: { type: "radio", name: "gender" },
-                        domProps: { value: _vm.female }
-                      }),
-                      _vm._v(" "),
-                      _c("i", { staticClass: "fas fa-female" }),
-                      _vm._v(" Female\n                                    ")
-                    ])
-                  ])
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _vm._m(5),
+                  _vm._v(" "),
+                  _vm._m(6),
+                  _vm._v(" "),
+                  _vm._m(7),
+                  _vm._v(" "),
+                  _vm._m(8)
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(5),
-              _vm._v(" "),
-              _vm._m(6)
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row mt-3" }, [
-              _c("div", { staticClass: "col-md-4 border-right" }, [
-                _vm._m(7),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "emp_status" } }, [
-                    _vm._v("Employment Status")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      staticClass: "form-control form-control-sm",
-                      attrs: { name: "emp_status", id: "emp_status" }
-                    },
-                    [
-                      _c("option", { attrs: { value: "" } }, [
-                        _vm._v("-- Select --")
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(_vm.empStatuses, function(empStatus) {
-                        return _c(
-                          "option",
-                          {
-                            key: empStatus.id,
-                            domProps: { value: empStatus.id }
-                          },
-                          [_vm._v(_vm._s(empStatus.name))]
-                        )
-                      })
-                    ],
-                    2
-                  )
-                ]),
-                _vm._v(" "),
-                _vm._m(8)
-              ]),
-              _vm._v(" "),
-              _vm._m(9),
-              _vm._v(" "),
-              _vm._m(10)
+              _vm._m(9)
             ])
           ])
         ])
@@ -48066,8 +48070,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4" }, [
-      _c("div", { staticClass: "form-group-sm" }, [
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("hr", { staticClass: "mt-0", staticStyle: { color: "#000" } })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6 border-right border-dark" }, [
+      _c("div", { staticClass: "form-group" }, [
         _c("label", { attrs: { for: "fname" } }, [_vm._v("First Name")]),
         _vm._v(" "),
         _c("input", {
@@ -48076,7 +48090,7 @@ var staticRenderFns = [
         })
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group-sm" }, [
+      _c("div", { staticClass: "form-group" }, [
         _c("label", { attrs: { for: "mname" } }, [_vm._v("Middle Name")]),
         _vm._v(" "),
         _c("input", {
@@ -48085,81 +48099,78 @@ var staticRenderFns = [
         })
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group-sm" }, [
+      _c("div", { staticClass: "form-group" }, [
         _c("label", { attrs: { for: "lname" } }, [_vm._v("Last Name")]),
         _vm._v(" "),
         _c("input", {
           staticClass: "form-control form-control-sm",
           attrs: { type: "text", id: "lname", name: "last_name" }
         })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4" }, [
-      _c("div", { staticClass: "form-group-sm" }, [
-        _c("label", { attrs: { for: "emp_id" } }, [_vm._v("Employee ID")]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "suffix" } }, [_vm._v("Suffix")]),
         _vm._v(" "),
         _c("input", {
           staticClass: "form-control form-control-sm",
-          attrs: { type: "text", id: "emp_id", name: "emp_id" }
+          attrs: { type: "text", id: "suffix", name: "suffix" }
         })
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group-sm" }, [
-        _c("label", { attrs: { for: "tin_no" } }, [_vm._v("Tin No.")]),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "birth_date" } }, [_vm._v("Birth Date")]),
         _vm._v(" "),
         _c("input", {
           staticClass: "form-control form-control-sm",
-          attrs: { type: "text", id: "tin_no", name: "tin_no" }
+          attrs: { type: "text", id: "datepicker", name: "birth_date" }
         })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12" }, [
-      _c("h4", [_vm._v("Official Details")]),
+      ]),
       _vm._v(" "),
-      _c("hr", { staticClass: "mt-0" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group-sm mb-3" }, [
-      _c("label", { attrs: { for: "birth_date" } }, [_vm._v("Birth Date")]),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "birth_place" } }, [_vm._v("Birth Place")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control form-control-sm",
+          attrs: { type: "text", id: "birth_place", name: "birth_place" }
+        })
+      ]),
       _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control form-control-sm",
-        attrs: { type: "text", id: "datepicker", name: "birth_date" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group-sm mb-3" }, [
-      _c("label", { attrs: { for: "birth_place" } }, [_vm._v("Birth Place")]),
+      _c("div", { staticClass: "form-group mb-4" }, [
+        _c(
+          "label",
+          {
+            staticClass: "mr-2",
+            staticStyle: { display: "block" },
+            attrs: { for: "gender" }
+          },
+          [_vm._v("Gender")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-check-inline ml-3" }, [
+          _c("label", { staticClass: "form-check-label" }, [
+            _c("input", {
+              staticClass: "form-check-input",
+              attrs: { type: "radio", name: "gender", value: "male" }
+            }),
+            _vm._v(" "),
+            _c("i", { staticClass: "fas fa-male" }),
+            _vm._v(" Male\n                                        ")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-check-inline" }, [
+          _c("label", { staticClass: "form-check-label" }, [
+            _c("input", {
+              staticClass: "form-check-input",
+              attrs: { type: "radio", name: "gender", value: "female" }
+            }),
+            _vm._v(" "),
+            _c("i", { staticClass: "fas fa-female" }),
+            _vm._v(" Female\n                                        ")
+          ])
+        ])
+      ]),
       _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control form-control-sm",
-        attrs: { type: "text", id: "birth_place", name: "birth_place" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-5 border-right" }, [
       _c("div", { staticClass: "form-group" }, [
         _c("label", { attrs: { for: "civil_status" } }, [
           _vm._v("Civil Status")
@@ -48180,14 +48191,8 @@ var staticRenderFns = [
           staticClass: "form-control form-control-sm",
           attrs: { type: "text", name: "per_address", id: "per_address" }
         })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4 border-right" }, [
+      ]),
+      _vm._v(" "),
       _c("div", { staticClass: "form-group" }, [
         _c("label", { attrs: { for: "contact_no" } }, [
           _vm._v("Contact Number")
@@ -48214,6 +48219,24 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "emp_id" } }, [_vm._v("Employee ID")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control form-control-sm",
+          attrs: { type: "text", id: "emp_id", name: "emp_id" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "tin_no" } }, [_vm._v("Tin No.")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control form-control-sm",
+          attrs: { type: "text", id: "tin_no", name: "tin_no" }
+        })
+      ]),
+      _vm._v(" "),
       _c("label", { attrs: { for: "role_type" } }, [_vm._v("Role Type")]),
       _vm._v(" "),
       _c("input", {
@@ -48239,64 +48262,87 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4 border-right" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "date_join" } }, [
-          _vm._v("Date of Joining")
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control form-control-sm",
-          attrs: { type: "text", id: "datepicker", name: "date_join" }
-        })
-      ]),
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "date_join" } }, [_vm._v("Date of Joining")]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "date_appoint" } }, [
-          _vm._v("Date of Original Appointment")
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control form-control-sm",
-          attrs: { type: "text", id: "datepicker", name: "date_appoint" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "work_shift" } }, [_vm._v("Work Shift")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control form-control-sm",
-          attrs: { type: "text", name: "work_shift", id: "work_shift" }
-        })
-      ])
+      _c("input", {
+        staticClass: "form-control form-control-sm",
+        attrs: { type: "text", id: "datepicker", name: "date_join" }
+      })
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "biometric" } }, [
-          _vm._v("Biometric ID/RFID")
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control form-control-sm",
-          attrs: { type: "text", name: "biometric", id: "biometric" }
-        })
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "date_appoint" } }, [
+        _vm._v("Date of Original Appointment")
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "item_num" } }, [
-          _vm._v("Complete Item No.")
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control form-control-sm",
-          attrs: { type: "text", name: "item_num", id: "item_num" }
-        })
+      _c("input", {
+        staticClass: "form-control form-control-sm",
+        attrs: { type: "text", id: "datepicker", name: "date_appoint" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "work_shift" } }, [_vm._v("Work Shift")]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control form-control-sm",
+        attrs: { type: "text", name: "work_shift", id: "work_shift" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "biometric" } }, [
+        _vm._v("Biometric ID/RFID")
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control form-control-sm",
+        attrs: { type: "text", name: "biometric", id: "biometric" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "item_num" } }, [
+        _vm._v("Complete Item No.")
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control form-control-sm",
+        attrs: { type: "text", name: "item_num", id: "item_num" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row mt-0" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-success form-control",
+            attrs: { type: "submit" }
+          },
+          [_vm._v("Add Employee")]
+        )
       ])
     ])
   }
@@ -48992,6 +49038,7 @@ var render = function() {
     _c(
       "form",
       {
+        staticClass: "mb-3",
         attrs: { action: "", method: "post" },
         on: {
           submit: function($event) {
@@ -49098,19 +49145,12 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-success float-right",
-            attrs: { type: "submit" }
-          },
-          [_vm._v("Add Area")]
-        )
+        _vm._m(0)
       ]
     ),
     _vm._v(" "),
     _c("table", { staticClass: "table table-hover" }, [
-      _vm._m(0),
+      _vm._m(1),
       _vm._v(" "),
       _c(
         "tbody",
@@ -49184,7 +49224,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(1),
+              _vm._m(2),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c(
@@ -49319,7 +49359,7 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _vm._m(2)
+                    _vm._m(3)
                   ]
                 )
               ])
@@ -49331,6 +49371,21 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "d-flex flex-row-reverse" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-success float-right",
+          attrs: { type: "submit" }
+        },
+        [_vm._v("Add Area")]
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -49417,6 +49472,7 @@ var render = function() {
     _c(
       "form",
       {
+        staticClass: "mb-3",
         attrs: { action: "", method: "post" },
         on: {
           submit: function($event) {
@@ -49531,19 +49587,12 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-success float-right",
-            attrs: { type: "submit" }
-          },
-          [_vm._v("Add Component")]
-        )
+        _vm._m(0)
       ]
     ),
     _vm._v(" "),
     _c("table", { staticClass: "table" }, [
-      _vm._m(0),
+      _vm._m(1),
       _vm._v(" "),
       _vm.components.length > 0
         ? _c(
@@ -49625,7 +49674,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(1),
+              _vm._m(2),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c(
@@ -49762,7 +49811,7 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _vm._m(2)
+                    _vm._m(3)
                   ]
                 )
               ])
@@ -49774,6 +49823,21 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "d-flex flex-row-reverse" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-success float-right",
+          attrs: { type: "submit" }
+        },
+        [_vm._v("Add Component")]
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -49860,6 +49924,7 @@ var render = function() {
     _c(
       "form",
       {
+        staticClass: "mb-3",
         attrs: { action: "", method: "post" },
         on: {
           submit: function($event) {
@@ -49909,19 +49974,12 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-success float-right",
-            attrs: { type: "submit" }
-          },
-          [_vm._v("Add Grade Level")]
-        )
+        _vm._m(0)
       ]
     ),
     _vm._v(" "),
     _c("table", { staticClass: "table table-hover" }, [
-      _vm._m(0),
+      _vm._m(1),
       _vm._v(" "),
       _c(
         "tbody",
@@ -49993,7 +50051,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(1),
+              _vm._m(2),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c(
@@ -50058,7 +50116,7 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _vm._m(2)
+                    _vm._m(3)
                   ]
                 )
               ])
@@ -50070,6 +50128,21 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "d-flex flex-row-reverse" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-success float-right",
+          attrs: { type: "submit" }
+        },
+        [_vm._v("Add Grade Level")]
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -50220,19 +50293,12 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-success float-right",
-                        attrs: { type: "submit" }
-                      },
-                      [_vm._v("Add Subject")]
-                    )
+                    _vm._m(1)
                   ]
                 ),
                 _vm._v(" "),
                 _c("table", { staticClass: "table table-hover" }, [
-                  _vm._m(1),
+                  _vm._m(2),
                   _vm._v(" "),
                   _vm.subjects.length > 0
                     ? _c(
@@ -50314,7 +50380,7 @@ var render = function() {
                   },
                   [
                     _c("div", { staticClass: "modal-content" }, [
-                      _vm._m(2),
+                      _vm._m(3),
                       _vm._v(" "),
                       _c("div", { staticClass: "modal-body" }, [
                         _c(
@@ -50382,7 +50448,7 @@ var render = function() {
                               1
                             ),
                             _vm._v(" "),
-                            _vm._m(3)
+                            _vm._m(4)
                           ]
                         )
                       ])
@@ -50512,6 +50578,21 @@ var staticRenderFns = [
             )
           ])
         ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "d-flex flex-row-reverse" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-success float-right",
+          attrs: { type: "submit" }
+        },
+        [_vm._v("Add Subject")]
       )
     ])
   },

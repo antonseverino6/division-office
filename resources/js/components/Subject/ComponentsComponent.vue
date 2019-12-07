@@ -1,7 +1,7 @@
 <template>
     <div>
 
-            <form @submit.prevent="addComponent()" action="" method="post">
+            <form class="mb-3" @submit.prevent="addComponent()" action="" method="post">
                 <div class="form-group">
                     <label for="name">Component</label>
                     <input type="text" v-model="addComponentForm.name" class="form-control" 
@@ -18,7 +18,9 @@
                     </select>
                     <has-error :form="addComponentForm" field="area"></has-error> 
                 </div>
-                <button type="submit" class="btn btn-success float-right">Add Component</button>
+                <div class="d-flex flex-row-reverse">
+                    <button type="submit" class="btn btn-success float-right">Add Component</button>
+                </div>
             </form>
 
             <table class="table">

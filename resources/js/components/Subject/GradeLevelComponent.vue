@@ -1,13 +1,16 @@
 <template>
     <div>
-        <form @submit.prevent="addGradeLevel()" action="" method="post">
+        <form class="mb-3" @submit.prevent="addGradeLevel()" action="" method="post">
             <div class="form-group">
                 <label for="name">Grade Level</label>
                 <input type="text" v-model="addGradeLevelForm.name" class="form-control" 
                     :class="{ 'is-invalid': addGradeLevelForm.errors.has('name') }" id="name" placeholder="Grade Level Name">
                 <has-error :form="addGradeLevelForm" field="name"></has-error>
             </div>
-            <button type="submit" class="btn btn-success float-right">Add Grade Level</button>
+
+            <div class="d-flex flex-row-reverse">
+                <button type="submit" class="btn btn-success float-right">Add Grade Level</button>
+            </div>    
         </form>
 
         <table class="table table-hover">
