@@ -61,6 +61,7 @@ import Representative from './components/RepresentativeComponent.vue';
 import Subject from './components/Subject/SubjectComponent.vue';
 import TypeOfEmployee from './components/TypeOfEmployee/TypeOfEmployeeComponent.vue';
 import AddEmployee from './components/AddEmployeeComponent.vue';
+import CivilStatus from './components/CivilStatusComponent.vue';
 export const routes = [
     { path: '/users', component: User, name: 'User' },
     { path: '/dashboard', component: Dashboard, name: 'Dashboard' },
@@ -68,6 +69,7 @@ export const routes = [
     { path: '/subjects', component: Subject, name: 'Subject' },
     { path: '/add-employee', component: AddEmployee, name: 'AddEmployee' },
     { path: '/type-of-employee', component: TypeOfEmployee, name: 'TypeOfEmployee' },
+    { path: '/civil-status', component: CivilStatus, name: 'CivilStatus' },
 ];
 
 const router = new Router({

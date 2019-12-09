@@ -73,7 +73,13 @@
                     <i class="far fa-circle nav-icon"></i>
                     <p>Type of Employee</p>
                   </router-link>
-              </li>
+                </li>
+                <li class="nav-item">
+                  <router-link to="/civil-status" class="nav-link" active-class="active" exact>
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Civil Status</p>
+                  </router-link>
+              </li>                
                 </ul>
             </li>
           {{-- <li class="nav-item">

@@ -13,4 +13,14 @@ class Representative extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function employeePersonalDetails() 
+    {
+        return $this->hasMany(EmployeePersonalDetail::class);
+    }    
+
+    public function civilStatus()
+    {
+        return $this->belongsTo(CivilStatus::class);
+    }
 }

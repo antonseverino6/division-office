@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Representative::class);
     }
+
+    public function employeePersonalDetails()
+    {
+        return $this->hasMany(EmployeePersonalDetail::class);
+    }
 }

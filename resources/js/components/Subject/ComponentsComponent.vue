@@ -130,6 +130,8 @@
 
                         $('#editComponentModal').modal('hide');
 
+                        this.addComponentForm.clear();
+                        this.addComponentForm.reset();
                         this.$Progress.finish();
                         Fire.$emit('reloadComponents');
                     })

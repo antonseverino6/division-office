@@ -29,4 +29,6 @@ Route::patch('linkSubject/{position}', 'API\PositionsController@link_subject');
 Route::resource('levelsOfCivil', 'API\LevelsOfCivilsController');
 Route::resource('grade-levels', 'API\GradeLevelsController');
 Route::resource('employment-status', 'API\EmploymentStatusController');
+Route::resource('civil-status', 'API\CivilStatusController');
+Route::resource('employees','API\EmployeePersonalDetailsController');
 // Route::get('users', 'API\UserController');

@@ -16,9 +16,9 @@ class CreateRepresentativesTable extends Migration
         Schema::create('representatives', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('school_id');
-            $table->string('division_code');
-            $table->string('region_org_code');
+            $table->string('school_id')->nullable();
+            $table->string('division_code')->nullable();
+            $table->string('region_org_code')->nullable();
             $table->timestamps();
         });
     }
