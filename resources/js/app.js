@@ -62,6 +62,9 @@ import Subject from './components/Subject/SubjectComponent.vue';
 import TypeOfEmployee from './components/TypeOfEmployee/TypeOfEmployeeComponent.vue';
 import AddEmployee from './components/AddEmployeeComponent.vue';
 import CivilStatus from './components/CivilStatusComponent.vue';
+import Profile from './components/ProfileComponent.vue';
+import SaveProfile from './components/saveProfileComponent.vue';
+
 export const routes = [
     { path: '/users', component: User, name: 'User' },
     { path: '/dashboard', component: Dashboard, name: 'Dashboard' },
@@ -70,6 +73,8 @@ export const routes = [
     { path: '/add-employee', component: AddEmployee, name: 'AddEmployee' },
     { path: '/type-of-employee', component: TypeOfEmployee, name: 'TypeOfEmployee' },
     { path: '/civil-status', component: CivilStatus, name: 'CivilStatus' },
+    { path: '/profile', component: Profile, name: 'Profile' },
+    { path: '/save-profile', component: SaveProfile, name: 'SaveProfile' },
 ];
 
 const router = new Router({

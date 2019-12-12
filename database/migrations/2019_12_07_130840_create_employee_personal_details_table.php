@@ -27,7 +27,7 @@ class CreateEmployeePersonalDetailsTable extends Migration
             $table->string('per_address');
             $table->string('contact_num');
             $table->string('email');
-            $table->string('image')->nullable();
+            $table->string('image')->default('default_userprofile.png')->nullable();
             $table->integer('created_by');
             $table->unsignedBigInteger('representative_id');
             $table->timestamps();

@@ -3,46 +3,21 @@
         <div class="row justify-content-center">
             <div class="col-md-12 mt-3">
                 <div class="card">
-                    <div class="card-header">Add Employee</div>
+                    <div v-if="!userHasRecord" class="card-header">Create Your Profile</div>
+                    <div v-else class="card-header">Update Profile</div>
 
-                        <form @submit.prevent="addEmployee()" action="" method="post" enctype="multipart/form-data">
+                        <form @submit.prevent="(!userHasRecord) ? addEmployee() : updateProfile()" action="" method="post" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="row align-items-center justify-content-center mb-5">
                             <div class="col-md-4">
                                 <input type="file" ref="image" @change="uploadImage" accept="image/jpeg,image/jpg,image/png" id="file" style="display: none;">
-                                <img :src="setProfilePicture()" @click="pickFile" class="mr-5" style="border: 1px solid #000; cursor: pointer" width="200" height="200" alt="">
+                                <img v-if="!userHasRecord" :src="setProfilePicture()" @click="pickFile" class="mr-5" style="border: 1px solid #000; cursor: pointer" width="200" height="200" alt="">
+                                <img v-else :src="getProfilePhotoForUpdate()" @click="pickFile" class="mr-5" style="border: 1px solid #000; cursor: pointer" width="200" height="200" alt="">
                             </div>
                         </div>
 
-<!-- 
-                            <div class="col-md-4">
-                                <div class="form-group-sm">
-                                    <label for="fname">First Name</label>
-                                    <input type="text" id="fname" name="first_name" class="form-control form-control-sm">
-                                </div>
-                                <div class="form-group-sm">
-                                    <label for="mname">Middle Name</label>
-                                    <input type="text" id="mname" name="middle_name" class="form-control form-control-sm">
-                                </div> 
-                                <div class="form-group-sm">
-                                    <label for="lname">Last Name</label>
-                                    <input type="text" id="lname" name="last_name" class="form-control form-control-sm">
-                                </div>                                                                
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group-sm">
-                                    <label for="emp_id">Employee ID</label>
-                                    <input type="text" id="emp_id" name="emp_id" class="form-control form-control-sm">
-                                </div>
-                                <div class="form-group-sm">
-                                    <label for="tin_no">Tin No.</label>
-                                    <input type="text" id="tin_no" name="tin_no" class="form-control form-control-sm">
-                                </div> 
-                            </div> -->
-
                         <div class="row">
                             <div class="col-md-12">
-                                <!-- <h4>Official Details</h4> -->
                                 <hr class="mt-0" style="color: #000;">
                             </div>    
                         </div>    
@@ -199,7 +174,8 @@
 
                         <div class="row mt-0">
                             <div class="col-md-12">
-                            <button class="btn btn-success form-control" type="submit">Add Employee</button>
+                            <button v-if="!userHasRecord" class="btn btn-success form-control" type="submit">Submit</button>
+                            <button v-else class="btn btn-success form-control" type="submit">Save Changes</button>
                             
                             </div>
                         </div>
@@ -215,10 +191,12 @@
     export default {
         data() {
             return {
-                default_img: 'img/profile/default_userprofile.png',
+                default_img: '/img/profile/default_userprofile.png',
+                userHasRecord: false,
                 empStatuses: {},
                 civilStatuses: {},
                 form: new Form({
+                    id: '',
                     user_id: '',
                     fname: '',
                     mname: '',
@@ -251,6 +229,12 @@
                 this.$refs.image.click()
                 // document.getElementById('file').click();
             },
+            getUserId() {
+                axios.get('api/get-user')
+                     .then(({data}) => {
+                        this.form.user_id = data;
+                     })
+            },
             loadEmpStatus() {
                 axios.get('api/employment-status')
                      .then(({data}) => {
@@ -262,28 +246,24 @@
                      .then(({data}) => {
                          (this.civilStatuses = data)
                      });
-            },            
+            },  
+            // FOR ADDING PROFILE
+            userHasRecordMethod() {
+                axios.get('api/userHas-record')
+                     .then(({data}) => {
+                        this.userHasRecord = data;
+                        if (data) {
+                            this.fillForm();
+                        }
+                     }); 
+            },        
             uploadImage(e) {
-
-                let files = e.target.files || e.dataTransfer.files;
-                if (!files.length)
-                    return;
-                this.createImage(files[0]);
-
- 
-                // this.form.image = this.$refs.image.files[0].name
-                // console.log(this.$refs.image.files[0])
-
-            },
-            createImage(file) {
+                let file = e.target.files[0];
                 let reader = new FileReader();
-                let vm = this;
-                reader.onload = (e) => {
-                    this.form.image = e.target.result;
-                    // this.default_img = e.target.result;
-                };
-                reader.readAsDataURL(file)
-
+                reader.onloadend = (file) => {
+                    this.form.image = reader.result;
+                }
+                reader.readAsDataURL(file);
             },
             setProfilePicture() {
                 let photo = (this.form.image !== '') ? this.form.image : this.default_img;
@@ -300,21 +280,53 @@
                         title: 'Employee added successfully'
                         });
                         this.$Progress.finish();
-                        this.form.reset();
-                        this.form.clear();
+                        this.$router.push('/profile');
                     })
                     .catch(() => {
                         this.$Progress.fail();
                     })
-            }
+            },
+            //FOR UPDATING PROFILE
+            getProfilePhotoForUpdate() {
+                let photo = (this.form.image.length > 200) ? this.form.image : 'img/profile/' + this.form.image;
+                return photo;
+            },
+            fillForm() {
+                this.dataLoaded = true;
+                axios.get('api/user-profile')
+                     .then(({data}) => {
+                         (this.form.fill(data[0]));
+                         this.dataLoaded = false;
+                     })
+            },
+            updateProfile() {
+                this.$Progress.start();
+                this.form.patch('api/employees/' + this.form.id)
+                    .then(() => {
+
+                        Toast.fire({
+                        icon: 'success',
+                        title: 'Profile updated successfully'
+                        });
+
+                        this.$Progress.finish();
+                        this.$router.push('/profile');
+                    })
+                    .catch(() => {
+                        this.$Progress.fail();
+                    })
+            },            
+
         },
         mounted() {
             console.log('Component mounted.')
             flatpickr('#datepicker')
         },
         created() {
+            this.userHasRecordMethod();
             this.loadEmpStatus();
             this.loadCivilStatus();
+            this.getUserId();
         }
 
     }

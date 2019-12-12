@@ -17,6 +17,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+Route::get('userHas-record', 'API\UserController@hasRecord');
+Route::get('get-user', 'API\UserController@getUser');
+Route::get('user-profile', 'API\UserController@userProfile');
 Route::resource('users','API\UserController');
 Route::resource('representatives', 'API\RepresentativesController');
 Route::resource('subjects', 'API\SubjectsController');
@@ -31,4 +35,5 @@ Route::resource('grade-levels', 'API\GradeLevelsController');
 Route::resource('employment-status', 'API\EmploymentStatusController');
 Route::resource('civil-status', 'API\CivilStatusController');
 Route::resource('employees','API\EmployeePersonalDetailsController');
+
 // Route::get('users', 'API\UserController');

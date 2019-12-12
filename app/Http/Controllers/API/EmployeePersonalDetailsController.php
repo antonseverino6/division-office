@@ -9,6 +9,7 @@ use App\EmployeeEmploymentDetail;
 use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
 use App\Http\Requests\Employees\AddEmployeeRequest;
+use App\Http\Requests\Employees\UpdateEmployeeRequest;
 
 class EmployeePersonalDetailsController extends Controller
 {
@@ -47,6 +48,7 @@ class EmployeePersonalDetailsController extends Controller
     {
 
         $emp = EmployeePersonalDetail::create([
+            'user_id' => $request->user_id,
             'fname' => $request->fname,
             'mname' => $request->mname,
             'lname' => $request->lname,
@@ -126,9 +128,65 @@ class EmployeePersonalDetailsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateEmployeeRequest $request, EmployeePersonalDetail $employee)
     {
-        //
+        $currentPhoto = $employee->image;
+
+        $employee_profile = $employee->update([
+            'fname' => $request->fname,
+            'mname' => $request->mname,
+            'lname' => $request->lname,
+            'suffix' => $request->suffix,
+            'birth_date' => $request->birth_date,
+            'birth_place' => $request->birth_place,
+            'gender' => $request->gender,
+            'civil_status_id' => $request->civil_status_id,
+            'per_address' => $request->per_address,
+            'contact_num' => $request->contact_num,
+            'email' => $request->email,
+        ]);
+
+        
+
+        if ($employee_profile) {
+            $employee->employeeEmploymentDetail()->update([
+                'employee_id' => $request->employee_id,
+                'tin_no' => $request->tin_no,
+                'role_type' => $request->role_type,
+                'employment_status_id' => $request->employment_status_id,
+                'job_code' => $request->job_code,
+                'date_join' => $request->date_join,
+                'date_appoint' => $request->date_appoint,
+                'work_shift' => $request->work_shift,
+                'biometric' => $request->biometric,
+                'item_num' => $request->item_num,  
+            ]);
+
+            if ($request->image != $currentPhoto) {
+                $imageData = $request->image;
+                $name = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
+                Image::make($request->image)->save(public_path('img/profile/').$name);
+    
+                // $request->photo = $name;
+                // $request->merge(['image' => $name]);
+
+                $employee->update(['image' => $name]);
+                if ($currentPhoto != 'default_userprofile.png') {
+                    $userPhoto = public_path('img/profile/').$currentPhoto;
+                    if (file_exists($userPhoto)) {
+                        
+                        @unlink($userPhoto);
+                    } 
+                }
+  
+
+                return ['id' => $employee->id];
+                
+    
+            } 
+
+        }
+        
     }
 
     /**

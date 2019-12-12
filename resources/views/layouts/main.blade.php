@@ -62,6 +62,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- REQUIRED SCRIPTS -->
 <script src="{{ asset('js/app.js') }}"></script>
+
+
 {{-- <script src="{{asset('js/jquery/jquery.min.js')}}"></script> --}}
 <!-- Bootstrap 4 -->
 {{-- <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script> --}}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\EmployeePersonalDetail;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -79,6 +80,25 @@ class UserController extends Controller
     public function show($id)
     {
         //
+    }
+
+    public function userProfile() {
+        return EmployeePersonalDetail::with('representative')->where('user_id',auth('api')->user()->id)
+                        ->rightJoin('employee_employment_details','employee_personal_details.id','=', 'employee_employment_details.employee_personal_detail_id')
+                        ->select('*','employee_employment_details.id AS employment_details_id', 'employee_personal_details.id AS id')
+                        ->get();
+    }
+
+    public function getUser() 
+    {
+        return json_encode(auth('api')->user()->id);
+    }
+
+    public function hasRecord() 
+    {
+        $record = EmployeePersonalDetail::where('user_id', auth('api')->user()->id)->exists();
+        return json_encode($record);
+        // return ['message' => $hasRecord];
     }
 
     /**

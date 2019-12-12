@@ -14,7 +14,7 @@
           <img src="{{asset('img/profile_placeholder.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{auth()->user()->name}}</a>
+          <router-link to="/profile" class="d-block">{{auth()->user()->name}}</router-link>
         </div>
       </div>
 
