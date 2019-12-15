@@ -88,13 +88,13 @@
                                         <label for="gender" class="mr-2" style="display:block">Gender</label>
                                         <div class="form-check-inline ml-3">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" v-model="form.gender" name="gender" value="male">
+                                            <input type="radio" class="form-check-input" v-model="form.gender" name="gender" value="Male">
                                             <i class="fas fa-male"></i> Male
                                         </label>
                                         </div>
                                         <div class="form-check-inline">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" v-model="form.gender" name="gender" value="female">
+                                            <input type="radio" class="form-check-input" v-model="form.gender" name="gender" value="Female">
                                             <i class="fas fa-female"></i> Female
                                         </label>
                                         </div>

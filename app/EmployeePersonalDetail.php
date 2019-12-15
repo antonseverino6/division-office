@@ -27,4 +27,9 @@ class EmployeePersonalDetail extends Model
     {
         return $this->belongsTo(CivilStatus::class);
     }
+
+    public function employmentStatus() 
+    {
+        return $this->belongsTo(EmploymentStatus::class);
+    }    
 }

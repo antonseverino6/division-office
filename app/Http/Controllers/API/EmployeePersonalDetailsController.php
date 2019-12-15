@@ -68,7 +68,6 @@ class EmployeePersonalDetailsController extends Controller
             EmployeeEmploymentDetail::create([
                 'employee_personal_detail_id' => $emp->id,
                 'employee_id' => $request->employee_id,
-                'tin_no' => $request->tin_no,
                 'role_type' => $request->role_type,
                 'employment_status_id' => $request->employment_status_id,
                 'job_code' => $request->job_code,
@@ -151,7 +150,6 @@ class EmployeePersonalDetailsController extends Controller
         if ($employee_profile) {
             $employee->employeeEmploymentDetail()->update([
                 'employee_id' => $request->employee_id,
-                'tin_no' => $request->tin_no,
                 'role_type' => $request->role_type,
                 'employment_status_id' => $request->employment_status_id,
                 'job_code' => $request->job_code,
@@ -198,30 +196,5 @@ class EmployeePersonalDetailsController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function validation($request)
-    {
-        return $this->validate($request, [
-            'fname' => 'required',
-            'mname' => 'required',
-            'lname' => 'required',
-            'birth_date' => 'required',
-            'birth_place' => 'required',
-            'civil_status_id' => 'required',
-            'gender' => 'required',
-            'per_address' => 'required',
-            'contact_num' => 'required',
-            'email' => 'required|unique:employee_personal_details',
-            'employee_id' => 'required|unique:employee_employment_details',
-            'tin_no' => 'required|unique:employee_employment_details',
-            'role_type' => 'required',
-            'employment_status_id' => 'required',
-            'job_code' => 'required',
-            'date_join' => 'required',
-            'date_appoint' => 'required',
-            'work_shift' => 'required',
-            'item_num' => 'required',
-        ]);
     }
 }

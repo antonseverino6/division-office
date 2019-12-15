@@ -34,7 +34,6 @@ class UpdateEmployeeRequest extends FormRequest
             'contact_num' => 'required',
             'email' => 'required|unique:employee_personal_details,email,' . $this->id,
             'employee_id' => 'required|unique:employee_employment_details,employee_id,' . $this->id . ',employee_personal_detail_id',
-            'tin_no' => 'required|unique:employee_employment_details,tin_no,' . $this->id . ',employee_personal_detail_id',
             'role_type' => 'required',
             'employment_status_id' => 'required',
             'job_code' => 'required',

@@ -63,13 +63,13 @@
                                         <label for="gender" class="mr-2" style="display:block">Gender</label>
                                         <div class="form-check-inline ml-3">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" v-model="form.gender" name="gender" value="male">
+                                            <input type="radio" class="form-check-input" v-model="form.gender" name="gender" value="Male">
                                             <i class="fas fa-male"></i> Male
                                         </label>
                                         </div>
                                         <div class="form-check-inline">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" v-model="form.gender" name="gender" value="female">
+                                            <input type="radio" class="form-check-input" v-model="form.gender" name="gender" value="Female">
                                             <i class="fas fa-female"></i> Female
                                         </label>
                                         </div>
@@ -112,12 +112,6 @@
                                     :class="{ 'is-invalid': form.errors.has('employee_id') }" v-model="form.employee_id">
                                         <has-error :form="form" field="employee_id"></has-error>
                                 </div>
-                                <div class="form-group">
-                                    <label for="tin_no">Tin No.</label>
-                                    <input type="text" id="tin_no" name="tin_no" class="form-control form-control-sm"
-                                    :class="{ 'is-invalid': form.errors.has('tin_no') }" v-model="form.tin_no">
-                                        <has-error :form="form" field="tin_no"></has-error>
-                                </div> 
                                     <label for="role_type">Role Type</label>
                                     <input type="text" class="form-control form-control-sm" name="role_type" id="role_type"
                                     :class="{ 'is-invalid': form.errors.has('role_type') }" v-model="form.role_type">
@@ -212,7 +206,6 @@
                     image: '',
 
                     employee_id: '',
-                    tin_no: '',
                     role_type: '',
                     employment_status_id: '',
                     job_code: '',
@@ -280,7 +273,7 @@
                         title: 'Employee added successfully'
                         });
                         this.$Progress.finish();
-                        this.$router.push('/profile');
+                        this.$router.push('/user-profile');
                     })
                     .catch(() => {
                         this.$Progress.fail();
@@ -310,7 +303,7 @@
                         });
 
                         this.$Progress.finish();
-                        this.$router.push('/profile');
+                        this.$router.push('/user-profile');
                     })
                     .catch(() => {
                         this.$Progress.fail();

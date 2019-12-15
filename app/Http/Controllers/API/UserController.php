@@ -83,8 +83,9 @@ class UserController extends Controller
     }
 
     public function userProfile() {
-        return EmployeePersonalDetail::with('representative')->where('user_id',auth('api')->user()->id)
+        return EmployeePersonalDetail::with(['representative','civilStatus'])->where('user_id',auth('api')->user()->id)
                         ->rightJoin('employee_employment_details','employee_personal_details.id','=', 'employee_employment_details.employee_personal_detail_id')
+                        ->with('employmentStatus')
                         ->select('*','employee_employment_details.id AS employment_details_id', 'employee_personal_details.id AS id')
                         ->get();
     }

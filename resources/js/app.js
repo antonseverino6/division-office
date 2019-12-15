@@ -51,6 +51,13 @@ Vue.component(AlertError.name, AlertError)
 import flatpickr from "flatpickr";
 window.flatpickr = flatpickr
 
+
+import moment from 'moment';
+Vue.filter('myDate', function(date) {
+    return moment(date).format('MMMM DD, YYYY')
+  });
+
+
 import Router from 'vue-router'
 
 Vue.use(Router);
@@ -62,7 +69,7 @@ import Subject from './components/Subject/SubjectComponent.vue';
 import TypeOfEmployee from './components/TypeOfEmployee/TypeOfEmployeeComponent.vue';
 import AddEmployee from './components/AddEmployeeComponent.vue';
 import CivilStatus from './components/CivilStatusComponent.vue';
-import Profile from './components/ProfileComponent.vue';
+import UserProfile from './components/UserProfile/UserProfileComponent.vue';
 import SaveProfile from './components/saveProfileComponent.vue';
 
 export const routes = [
@@ -73,7 +80,7 @@ export const routes = [
     { path: '/add-employee', component: AddEmployee, name: 'AddEmployee' },
     { path: '/type-of-employee', component: TypeOfEmployee, name: 'TypeOfEmployee' },
     { path: '/civil-status', component: CivilStatus, name: 'CivilStatus' },
-    { path: '/profile', component: Profile, name: 'Profile' },
+    { path: '/user-profile', component: UserProfile, name: 'UserProfile' },
     { path: '/save-profile', component: SaveProfile, name: 'SaveProfile' },
 ];
 

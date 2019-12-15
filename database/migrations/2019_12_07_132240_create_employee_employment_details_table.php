@@ -17,7 +17,6 @@ class CreateEmployeeEmploymentDetailsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('employee_personal_detail_id');
             $table->string('employee_id')->unique();
-            $table->string('tin_no')->unique();
             $table->string('role_type');
             $table->integer('employment_status_id');
             $table->string('job_code');

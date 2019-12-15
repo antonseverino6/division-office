@@ -35,7 +35,6 @@ class AddEmployeeRequest extends FormRequest
             'email' => 'required|unique:employee_personal_details',
             'image' => 'base64image',
             'employee_id' => 'required|unique:employee_employment_details',
-            'tin_no' => 'required|unique:employee_employment_details',
             'role_type' => 'required',
             'employment_status_id' => 'required',
             'job_code' => 'required',

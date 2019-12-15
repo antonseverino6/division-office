@@ -5,8 +5,8 @@
                 <div class="card">
                     <div class="card-header">Profile</div>
 
-                    <div class="card-body" v-if="!dataLoaded">
-                        <div class="row mb-4">
+                    <div class="card-body">
+                        <div class="row mb-4" v-if="!dataLoaded">
                             <div class="col-md-1"></div>
                             <div class="col-md-3 text-right">
                                 <img :src="getImage()" style="border: 1px solid #000;" width="200" height="200" alt="">
@@ -14,7 +14,7 @@
                             <div class="col-md-8 pl-0 mt-3">
 
                                 <ul>
-                                    <li><h4><strong>{{ profileDetails.fname + " " + profileDetails.mname + " " + profileDetails.lname }}</strong></h4></li>
+                                    <li><h4><strong>{{ fullName() }}</strong></h4></li>
                                     <li>{{ profileDetails.representative.name }}</li>
                                     <li>Employee ID: <strong>{{ profileDetails.employee_id }}</strong></li>
                                 </ul>
@@ -27,9 +27,11 @@
                                     <div class="card-header">
                                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                                             <li class="nav-item">
-                                                <a class="nav-link active" id="official-details-tab" data-toggle="tab" href="#official-details" role="tab" aria-controls="official-details" aria-selected="true">Official Details</a>
+                                                <a class="nav-link active" id="official-details-tab" data-toggle="tab" href="#official-details" role="tab" aria-controls="official-details" aria-selected="true">Official Details</a>                                                
                                             </li>
-
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="personal-details-tab" data-toggle="tab" href="#personal-details" role="tab" aria-controls="personal-details" aria-selected="true">Personal Details</a>
+                                            </li>
                                         </ul> 
                                     </div>
 
@@ -42,8 +44,20 @@
                                                     </a>
                                                 </div>
                                             </div>
-                                
+
+                                            <div v-if="!dataLoaded">
+                                                <official-details v-bind:profileDetails="profileDetails"></official-details>
+                                            </div>
                                         </div>
+                                        <div class="card-body tab-pane" id="personal-details" aria-labelledby="personal-details-tab">
+                                            <div class="row">
+                                                <div class="col-md-12 text-right pr-4">
+                                                    <a href="#" @click="editProfile">
+                                                    <i class="far fa-edit" style="color: green; font-size: 20px;"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>                                        
                                     </div>
                                 </div>
                             </div>
@@ -55,16 +69,12 @@
     </div>
 </template>
 
-<style>
-    ul {
-        list-style-type: none;
-        /* margin-left: 0%; */
-        padding-left: 5%;
-    }
-</style>
-
 <script>
+    import OfficialDetails from './OfficialDetailsComponent.vue'
     export default {
+        components: {
+            OfficialDetails,
+        },
         data() {
             return {
                 // editMode: false,
@@ -81,18 +91,6 @@
             pickFile() {
                 this.$refs.image.click()
                 // document.getElementById('file').click();
-            },
-            loadEmpStatus() {
-                axios.get('api/employment-status')
-                     .then(({data}) => {
-                         (this.empStatuses = data)
-                     })
-            },
-            loadCivilStatus() {
-                axios.get('api/civil-status')
-                     .then(({data}) => {
-                         (this.civilStatuses = data)
-                     });
             },
             userHasRecord() {
                 axios.get('api/userHas-record')
@@ -121,40 +119,18 @@
             getImage() {
                 return '/img/profile/' + this.profileDetails.image;
             },
-            submitProfile() {
-
-            },
             editProfile() {
                 this.$router.push('/save-profile');
             },
-            updateProfileImage(e) {
-                let file = e.target.files[0];
-                let reader = new FileReader();
-                reader.onloadend = (file) => {
-                    this.form.image = reader.result;
+            fullName() {
+                let fullName = this.profileDetails.fname + " " + this.profileDetails.mname + " " + this.profileDetails.lname;
+                if (this.profileDetails.suffix !== null) {
+                    return fullName + " " + this.profileDetails.suffix;
+                } else {
+                    return fullName;
                 }
-                reader.readAsDataURL(file);
-            },
-            updateProfile() {
-                this.$Progress.start();
-                this.form.patch('api/employees/' + this.form.id)
-                    .then(() => {
-
-                        Toast.fire({
-                        icon: 'success',
-                        title: 'Profile updated successfully'
-                        });
-
-                        this.form.clear();
-                        this.$Progress.finish();
-                        this.loadProfile();
-                        $('#profileModal').modal('hide');
-                        
-                    })
-                    .catch(() => {
-                        this.$Progress.fail();
-                    })
-            },
+                
+            }
         },
         mounted() {
             console.log('Component mounted.')
@@ -163,9 +139,6 @@
         created() {
             this.userHasRecord();
             this.loadUser();
-            // this.loadProfile();
-            this.loadEmpStatus();
-            this.loadCivilStatus();
         }
     }
 </script>

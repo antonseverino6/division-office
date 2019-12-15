@@ -12,4 +12,10 @@ class EmploymentStatus extends Model
     {   
         return $this->hasMany(EmployeeEmploymentDetail::class);
     }
+
+    public function employeePersonalDetails()
+    {   
+        return $this->hasMany(EmployeePersonalDetail::class);
+    }
+
 }
